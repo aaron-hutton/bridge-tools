@@ -1,0 +1,19 @@
+{
+  "name": "bridgetools",
+  "private": true,
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint"
+  },
+  "devDependencies": {
+    "@turbo/gen": "^1.10.3",
+    "eslint": "^8.42.0",
+    "eslint-config-custom": "workspace:*",
+    "turbo": "latest"
+  },
+  "dependencies": {
+    "@changesets/cli": "^2.26.1"
+  }
+}
