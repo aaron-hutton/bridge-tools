@@ -1,0 +1,5 @@
+{
+  "extends": "@bridge-tools/tsconfig/base.json",
+  "include": ["**/*.ts"],
+  "exclude": ["dist", "node_modules"]
+}
