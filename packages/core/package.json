@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-bridge-tools": "workspace:*",
     "jest": "^29.5.0",
     "@bridge-tools/tsconfig": "workspace:*",
     "@bridge-tools/babel": "workspace:*",

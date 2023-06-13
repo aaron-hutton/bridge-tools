@@ -10,7 +10,7 @@
   "devDependencies": {
     "@turbo/gen": "^1.10.3",
     "eslint": "^8.42.0",
-    "eslint-config-custom": "workspace:*",
+    "eslint-config-bridge-tools": "workspace:*",
     "turbo": "latest"
   },
   "dependencies": {

@@ -9,8 +9,7 @@ import { AuctionCall } from '../types';
  */
 export function isAuctionEnded(auction: AuctionCall[]): boolean {
 	// Handle 3 initial passes
-	if (auction.length < 4) {
-		return false;
+	if (auction.length < 4) {return false;
 	}
 
 	return countFinalConsecutivePasses(auction) >= 3;

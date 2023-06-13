@@ -18,9 +18,9 @@ importers:
       eslint:
         specifier: ^8.42.0
         version: 8.42.0
-      eslint-config-custom:
+      eslint-config-bridge-tools:
         specifier: workspace:*
-        version: link:tools/eslint-config-custom
+        version: link:tools/eslint-config-bridge-tools
       turbo:
         specifier: latest
         version: 1.10.3
@@ -36,9 +36,9 @@ importers:
       '@types/jest':
         specifier: ^29.5.2
         version: 29.5.2
-      eslint-config-custom:
+      eslint-config-bridge-tools:
         specifier: workspace:*
-        version: link:../../tools/eslint-config-custom
+        version: link:../../tools/eslint-config-bridge-tools
       jest:
         specifier: ^29.5.0
         version: 29.5.0(@types/node@20.3.0)
@@ -58,7 +58,7 @@ importers:
         specifier: ^7.22.5
         version: 7.22.5(@babel/core@7.22.5)
 
-  tools/eslint-config-custom:
+  tools/eslint-config-bridge-tools:
     dependencies:
       '@typescript-eslint/eslint-plugin':
         specifier: ^5.59.9
