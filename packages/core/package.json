@@ -6,7 +6,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "eslint \"**/*.ts*\"",
+    "lint": "eslint \"src/**/*.ts*\"",
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "test": "jest test --collect-coverage"
   },
