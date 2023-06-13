@@ -1,5 +1,5 @@
 import { BIG_INTEGER_2_32 } from '../constants';
-import { RandomGenerator } from '../random';
+import { type RandomGenerator } from '../random';
 import { multipleAttempts } from './multiple-attempts';
 
 /**
@@ -12,7 +12,8 @@ import { multipleAttempts } from './multiple-attempts';
 export const BrowserCryptoRandomNumberGenerator: RandomGenerator = () => {
 	return multipleAttempts(() => {
 		const values = new Uint32Array(3);
-		//@ts-expect-error
+
+		//@ts-expect-error window is undefined
 		window.crypto.getRandomValues(values);
 
 		const rand1 = BigInt(values[0]) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
