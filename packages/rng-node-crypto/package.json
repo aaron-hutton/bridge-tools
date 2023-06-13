@@ -1,0 +1,27 @@
+{
+  "name": "@bridge-tools/rng-node-crypto",
+  "license": "MIT",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "lint": "eslint \"src/**/*.ts*\"",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "test": "jest test --collect-coverage"
+  },
+  "dependencies": {
+    "@bridge-tools/generator": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node":"^20.3.1",
+    "@types/jest": "^29.5.2",
+    "eslint-config-bridge-tools": "workspace:*",
+    "jest": "^29.5.0",
+    "@bridge-tools/tsconfig": "workspace:*",
+    "@bridge-tools/babel": "workspace:*",
+    "tsup": "^6.7.0",
+    "typescript": "^5.1.3"
+  },
+  "files": ["dist", "README.md"]
+}
