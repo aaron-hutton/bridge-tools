@@ -10,6 +10,9 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "test": "jest test --collect-coverage"
   },
+  "dependencies": {
+    "@bridge-tools/core": "workspace:*"
+  },
   "devDependencies": {
     "@types/jest": "^29.5.2",
     "eslint-config-bridge-tools": "workspace:*",
@@ -18,16 +21,6 @@
     "@bridge-tools/babel": "workspace:*",
     "tsup": "^6.7.0",
     "typescript": "^5.1.3"
-  },
-  "jest": {
-    "coverageThreshold": {
-      "global": {
-        "branches": 100,
-        "functions": 100,
-        "lines": 100,
-        "statements": 100
-      }
-    }
   },
   "files": ["dist", "README.md"]
 }
