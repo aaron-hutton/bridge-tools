@@ -11,7 +11,8 @@
     "@turbo/gen": "^1.10.3",
     "eslint": "^8.42.0",
     "eslint-config-bridge-tools": "workspace:*",
-    "turbo": "latest"
+    "turbo": "latest",
+    "prettier":"^2.8.8"
   },
   "dependencies": {
     "@changesets/cli": "^2.26.1"
