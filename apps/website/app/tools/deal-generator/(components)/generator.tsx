@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { EMPTY_DEAL } from "@/utils/constants";
 import { Types } from "@bridge-tools/core";
 import { generateDeals } from "@bridge-tools/generator";
-import { Provider } from "jotai";
 import { useEffect, useState } from "react";
 
 export function Generator() {
@@ -21,11 +20,9 @@ export function Generator() {
   }, []);
 
   return (
-    <Provider>
-      <div className="flex w-full flex-col items-center space-y-8">
-        <Button onClick={generate}>Generate Deal</Button>
-        <DealViewer deal={deal} />
-      </div>
-    </Provider>
+    <div className="flex w-full flex-col items-center space-y-8">
+      <Button onClick={generate}>Generate Deal</Button>
+      <DealViewer deal={deal} />
+    </div>
   );
 }
