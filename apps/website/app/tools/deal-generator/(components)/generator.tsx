@@ -1,27 +1,30 @@
 "use client";
 
-import { dealAtom } from "@/atoms/board";
 import { DealViewer } from "@/components/bridge/deal-viewer";
 import { Button } from "@/components/ui/button";
+import { EMPTY_DEAL } from "@/utils/constants";
+import { Types } from "@bridge-tools/core";
 import { generateDeals } from "@bridge-tools/generator";
-import { Provider, useAtom } from "jotai";
+import { Provider } from "jotai";
+import { useEffect, useState } from "react";
 
-function GenerateButton() {
-  const [_, setDeal] = useAtom(dealAtom);
+export function Generator() {
+  const [deal, setDeal] = useState<Types.Deal>(EMPTY_DEAL);
+
   const generate = () => {
     const deal = generateDeals({})[0];
     setDeal(deal);
   };
 
-  return <Button onClick={generate}>Generate Deal</Button>;
-}
+  useEffect(() => {
+    generate();
+  }, []);
 
-export function Generator() {
   return (
     <Provider>
       <div className="flex w-full flex-col items-center space-y-8">
-        <GenerateButton />
-        <DealViewer />
+        <Button onClick={generate}>Generate Deal</Button>
+        <DealViewer deal={deal} />
       </div>
     </Provider>
   );

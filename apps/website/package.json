@@ -29,8 +29,6 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.12.0",
-    "jotai": "^2.1.1",
-    "jotai-optics": "^0.3.0",
     "lucide-react": "^0.221.0",
     "next": "13.4.3",
     "next-themes": "^0.2.1",

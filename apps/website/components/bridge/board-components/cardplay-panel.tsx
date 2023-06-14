@@ -1,16 +1,16 @@
-import { contractAtom, dealAtom, playAtom } from "@/atoms/board";
 import { Box } from "@/components/ui-components/box";
 import { COMPASS_DISPLAY_ORDER } from "@/utils/constants";
 import { Board, Constants, Deal, Trick, Types } from "@bridge-tools/core";
-import { useAtom } from "jotai";
 import React from "react";
 import { SuitSymbol } from "./suit";
 
-export function CardplayPanel() {
-  const [play] = useAtom(playAtom);
-  const [deal] = useAtom(dealAtom);
-  const [contract] = useAtom(contractAtom);
+interface Props {
+  play: Types.Trick[];
+  deal: Types.Deal;
+  contract: Types.Contract;
+}
 
+export function CardplayPanel({ play, deal, contract }: Props) {
   if (contract === null || contract === "Passout") {
     return null;
   }

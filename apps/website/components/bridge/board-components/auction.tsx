@@ -1,7 +1,5 @@
-import { auctionAtom, dealerAtom } from "@/atoms/board";
 import { cn } from "@/lib/utils";
 import { Board, Types } from "@bridge-tools/core";
-import { useAtom } from "jotai";
 import { useMemo } from "react";
 import { StrainSymbol } from "./strain";
 
@@ -28,10 +26,12 @@ function AuctionItem({ call }: { call: Types.AuctionCall }) {
   }
 }
 
-export function AuctionDiagram() {
-  const [dealer] = useAtom(dealerAtom);
-  const [auction] = useAtom(auctionAtom);
+interface Props {
+  dealer: Types.Compass;
+  auction: Types.AuctionCall[];
+}
 
+export function AuctionDiagram({ dealer, auction }: Props) {
   const blanks = useMemo(() => {
     let b = [];
     let direction = Types.Compass.West;

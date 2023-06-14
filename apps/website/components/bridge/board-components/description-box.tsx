@@ -1,9 +1,10 @@
-import { descriptionAtom } from "@/atoms/board-display";
 import { Box } from "@/components/ui-components/box";
-import { useAtom } from "jotai";
 
-export function DescriptionBox() {
-  const [description] = useAtom(descriptionAtom);
+interface Props {
+  description: string;
+}
+
+export function DescriptionBox({ description }: Props) {
   return (
     <Box
       titleComponent={

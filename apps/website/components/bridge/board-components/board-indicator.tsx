@@ -1,12 +1,12 @@
-import { boardNumberAtom, dealerAtom, vulnerabilityAtom } from "@/atoms/board";
 import { Board, Types } from "@bridge-tools/core";
-import { useAtom } from "jotai";
 
-export function BoardIndicator() {
-  const [vulnerability] = useAtom(vulnerabilityAtom);
-  const [dealer] = useAtom(dealerAtom);
-  const [boardNum] = useAtom(boardNumberAtom);
+interface Props {
+  vulnerability: Types.Vulnerability;
+  dealer: Types.Compass;
+  boardNum: number;
+}
 
+export function BoardIndicator({ vulnerability, dealer, boardNum }: Props) {
   return (
     <div className="flex flex-col items-center justify-center py-6 font-bold text-black">
       <div className="flex aspect-square h-full flex-col items-center justify-center">

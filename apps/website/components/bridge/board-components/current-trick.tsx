@@ -1,23 +1,14 @@
-import { dealAtom } from "@/atoms/board";
+import { COMPASS_BOARD_ORDER } from "@/utils/constants";
 import { Board, Deal, Types } from "@bridge-tools/core";
-import { useAtom } from "jotai";
 import { Fragment } from "react";
 import { SuitSymbol } from "./suit";
 
-const ALL_DIRECTIONS = [
-  Types.Compass.North,
-  Types.Compass.West,
-  Types.Compass.East,
-  Types.Compass.South,
-];
-
 interface Props {
+  deal: Types.Deal;
   trick: Types.Trick;
 }
 
-export function CurrentTrick({ trick }: Props) {
-  const [deal] = useAtom(dealAtom);
-
+export function CurrentTrick({ deal, trick }: Props) {
   const firstCard = trick[0];
   const startDirection =
     firstCard !== undefined
@@ -26,7 +17,7 @@ export function CurrentTrick({ trick }: Props) {
   return (
     <div className="grid grid-cols-3 grid-rows-3 sm:p-2">
       <div></div>
-      {ALL_DIRECTIONS.map((direction, index) => {
+      {COMPASS_BOARD_ORDER.map((direction, index) => {
         const steps = Board.countClockwiseSteps(startDirection, direction);
         const card = trick[steps];
 

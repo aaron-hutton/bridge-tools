@@ -1,14 +1,15 @@
 "use client";
-import { dealAtom } from "@/atoms/board";
 import { COMPASS_DISPLAY_ORDER } from "@/utils/constants";
-import { useAtom } from "jotai";
+import { Types } from "@bridge-tools/core";
 import React from "react";
 import { BoardBackground } from "./board-components/board-background";
 import { HandDiagram } from "./board-components/hand";
 
-export function DealViewer() {
-  const [deal] = useAtom(dealAtom);
+interface Props {
+  deal: Types.Deal;
+}
 
+export function DealViewer({ deal }: Props) {
   return (
     <BoardBackground>
       <div></div>

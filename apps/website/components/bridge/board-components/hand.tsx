@@ -7,7 +7,7 @@ import { SuitSymbol } from "./suit";
 interface Props {
   hand: Types.Hand;
   direction: Types.Compass;
-  players: Record<Types.Compass, string>;
+  players?: Partial<Record<Types.Compass, string>>;
   selected?: boolean;
   onClick?: () => void;
 
@@ -18,7 +18,7 @@ interface Props {
 export function HandDiagram({
   hand,
   direction,
-  players,
+  players = {},
   selected = false,
   onClick,
   cardsClickable = () => false,
@@ -47,7 +47,7 @@ export function HandDiagram({
             {direction}
           </div>
           <hr className="h-full w-[1px] border-0 bg-black" />
-          <div className="pl-2">{players[direction].name ?? ""}</div>
+          <div className="pl-2">{players?.[direction] ?? ""}</div>
         </>
       }
       className="overflow-x-auto text-lg"

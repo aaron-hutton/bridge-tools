@@ -1,17 +1,14 @@
-import {
-  boardResultAtom,
-  claimedTricksAtom,
-  contractAtom,
-} from "@/atoms/board";
 import { Box } from "@/components/ui-components/box";
-import { useAtom } from "jotai";
+import { Types } from "@bridge-tools/core";
 import { ContractSymbol } from "./contract";
 
-export function BoardResult() {
-  const [contract] = useAtom(contractAtom);
-  const [claimedTricks] = useAtom(claimedTricksAtom);
-  const [result] = useAtom(boardResultAtom);
+interface Props {
+  contract: Types.Contract;
+  claimedTricks: number;
+  result: Types.BoardResult;
+}
 
+export function BoardResult({ contract, claimedTricks, result }: Props) {
   const claim = claimedTricks ?? 0;
 
   if (result === null) {

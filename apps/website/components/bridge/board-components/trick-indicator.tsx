@@ -1,16 +1,19 @@
-import { contractAtom } from "@/atoms/board";
 import { Box } from "@/components/ui-components/box";
-import { useAtom } from "jotai";
+import { Types } from "@bridge-tools/core";
 import { ContractSymbol } from "./contract";
 
 interface Props {
   tricksNS?: number;
   tricksEW?: number;
+
+  contract: Types.Contract;
 }
 
-export function TrickIndicator({ tricksNS = 0, tricksEW = 0 }: Props) {
-  const [contract] = useAtom(contractAtom);
-
+export function TrickIndicator({
+  tricksNS = 0,
+  tricksEW = 0,
+  contract,
+}: Props) {
   return (
     <div className="md:p-4">
       <Box
