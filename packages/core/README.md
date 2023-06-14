@@ -39,12 +39,6 @@ We're proud to have 100% test coverage. The unit tests can be run via the comman
 $ npm test
 ```
 
-To test the coverage use:
-
-```console
-$ npm run test-c
-```
-
 # Getting involved
 
 If you have questions, concerns, bug reports, etc, please file an issue in this repository's Issue Tracker or ask a question on the [discord](https://discord.gg/fxAQcRY2dt).
@@ -60,7 +54,7 @@ If you would like to support further development of the `@bridge-tools` suite yo
 
 ## Current
 
-- [@bridge-tools/generator](https://github.com/bridge-tools/generator) - Used for hand generation using fast or cryptographically secure RNGs
+- [@bridge-tools/generator](https://github.com/aaron-hutton/bridge-tools/tree/main/packages/generator) - Used for hand generation using fast or cryptographically secure RNGs
 
 ## Planned
 

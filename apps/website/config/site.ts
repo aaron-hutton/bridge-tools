@@ -4,6 +4,6 @@ export const SiteConfig = {
   ogImage: "https://bridge-tools.com/og.jpg",
   description: "A free and open-source collection of tools for bridge players.",
   links: {
-    github: "https://github.com/bridge-tools",
+    github: "https://github.com/aaron-hutton/bridge-tools",
   },
 };

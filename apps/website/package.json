@@ -1,6 +1,11 @@
 {
   "name": "@bridge-tools/website",
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaron-hutton/bridge-tools.git",
+    "directory": "apps/website"
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",
