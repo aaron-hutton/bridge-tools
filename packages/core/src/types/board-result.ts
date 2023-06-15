@@ -1,5 +1,5 @@
 export interface BoardResult {
-	tricksTaken: number;
-	result: number;
-	score: number;
+  tricksTaken: number;
+  result: number;
+  score: number;
 }

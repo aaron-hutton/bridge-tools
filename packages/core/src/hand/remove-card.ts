@@ -1,5 +1,6 @@
-import { equalCard } from '../card';
-import { Card, Hand } from '../types';
+import { equalCard } from "../card";
+import { stringifyCard } from "../string-parser";
+import { type Card, type Hand } from "../types";
 
 /**
  * Removes the card from the hand. The original array will not be modified.
@@ -9,13 +10,13 @@ import { Card, Hand } from '../types';
  * @returns The hand with the card removed
  */
 export function removeCard(hand: Hand, card: Card, throwErrorOnMissing = true) {
-	const result = hand.filter((c) => !equalCard(c, card));
+  const result = hand.filter((c) => !equalCard(c, card));
 
-	if (throwErrorOnMissing && result.length === hand.length) {
-		throw new Error(
-			`Tried to remove card: ${card} but it wasn't in the hand.`
-		);
-	}
+  if (throwErrorOnMissing && result.length === hand.length) {
+    throw new Error(
+      `Tried to remove card: ${stringifyCard(card)} but it wasn't in the hand.`
+    );
+  }
 
-	return result;
+  return result;
 }

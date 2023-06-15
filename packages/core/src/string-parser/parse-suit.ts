@@ -1,15 +1,15 @@
-import { Suit } from '../types';
-import { findOrThrow } from '../utils/object';
+import { type Suit } from "../types";
+import { findOrThrow } from "../utils/object";
 
-const STRING_SUIT_TO_SUIT = {
-	S: Suit.Spade,
-	s: Suit.Spade,
-	H: Suit.Heart,
-	h: Suit.Heart,
-	D: Suit.Diamond,
-	d: Suit.Diamond,
-	C: Suit.Club,
-	c: Suit.Club,
+const STRING_SUIT_TO_SUIT: Record<string, Suit> = {
+  S: "S",
+  s: "S",
+  H: "H",
+  h: "H",
+  D: "D",
+  d: "D",
+  C: "C",
+  c: "C",
 };
 
 /**
@@ -18,9 +18,9 @@ const STRING_SUIT_TO_SUIT = {
  * @returns The suit or an error if it cannot be parsed
  */
 export function parseSuit(str: string): Suit {
-	return findOrThrow<string, Suit>(
-		STRING_SUIT_TO_SUIT,
-		str,
-		`Failed to parse suit with string: ${str}`
-	);
+  return findOrThrow<string, Suit>(
+    STRING_SUIT_TO_SUIT,
+    str,
+    `Failed to parse suit with string: ${str}`
+  );
 }

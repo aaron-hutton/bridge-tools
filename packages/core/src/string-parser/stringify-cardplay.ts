@@ -1,5 +1,5 @@
-import { Trick } from '../types';
-import { stringifyTrick } from './stringify-trick';
+import { type Trick } from "../types";
+import { stringifyTrick } from "./stringify-trick";
 
 /**
  * Convert the cardplay into a string
@@ -7,5 +7,5 @@ import { stringifyTrick } from './stringify-trick';
  * @returns A string representing the cardplay
  */
 export function stringifyCardPlay(play: Trick[]): string {
-	return play.map((trick) => stringifyTrick(trick)).join(',');
+  return play.map((trick) => stringifyTrick(trick)).join(",");
 }

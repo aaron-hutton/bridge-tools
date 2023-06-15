@@ -1,13 +1,13 @@
-import { COMPASS_DIRECTIONS } from '../bridge-constants';
-import { Compass } from '../types';
-import { findOrThrow } from '../utils/object';
+import { COMPASS_DIRECTIONS } from "../bridge-constants";
+import { type Compass } from "../types";
+import { findOrThrow } from "../utils/object";
 
 /** Board Vulnerability from NS perspective */
 export const BOARD_TO_DEALER: Record<number, Compass> = {
-	1: Compass.North,
-	2: Compass.East,
-	3: Compass.South,
-	0: Compass.West,
+  1: "N",
+  2: "E",
+  3: "S",
+  0: "W",
 };
 
 /**
@@ -16,10 +16,10 @@ export const BOARD_TO_DEALER: Record<number, Compass> = {
  * @returns The dealer on the specified board
  */
 export function calculateDealer(boardNumber: number): Compass {
-	const board = boardNumber % COMPASS_DIRECTIONS;
-	return findOrThrow<number, Compass>(
-		BOARD_TO_DEALER,
-		board,
-		`Failed to calculate dealer of board number ${boardNumber}`
-	);
+  const board = boardNumber % COMPASS_DIRECTIONS;
+  return findOrThrow<number, Compass>(
+    BOARD_TO_DEALER,
+    board,
+    `Failed to calculate dealer of board number ${boardNumber}`
+  );
 }

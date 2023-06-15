@@ -1,5 +1,5 @@
-import { countSuit } from '.';
-import { Hand, Suit } from '../types';
+import { countSuit } from ".";
+import { type Hand, type Suit } from "../types";
 
 /**
  * Checks if the given hand contains any cards which have the given suit
@@ -8,5 +8,5 @@ import { Hand, Suit } from '../types';
  * @returns True, if the hand contains at least one card within that suit
  */
 export function containsSuit(hand: Hand, suit: Suit) {
-	return countSuit(hand, suit) > 0;
+  return countSuit(hand, suit) > 0;
 }

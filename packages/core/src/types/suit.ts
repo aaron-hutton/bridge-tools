@@ -1,9 +1,9 @@
-export enum Suit {
-	Spade = 'S',
-	Heart = 'H',
-	Diamond = 'D',
-	Club = 'C',
-}
+export type Spade = "S";
+export type Heart = "H";
+export type Diamond = "D";
+export type Club = "C";
 
-export type NoTrumpType = 'NT';
-export const NoTrump: NoTrumpType = 'NT';
+export type NoTrump = "NT";
+
+export type Suit = Spade | Heart | Diamond | Club;
+export type SuitOrNT = Suit | NoTrump;

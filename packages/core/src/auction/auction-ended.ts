@@ -1,5 +1,5 @@
-import { countFinalConsecutivePasses } from '.';
-import { AuctionCall } from '../types';
+import { countFinalConsecutivePasses } from ".";
+import { type AuctionCall } from "../types";
 
 /**
  * Check if the auction has ended yet, doesn't check the validity of the auction itself
@@ -8,9 +8,10 @@ import { AuctionCall } from '../types';
  * @returns True, if the auction has 3 consecutive passes
  */
 export function isAuctionEnded(auction: AuctionCall[]): boolean {
-	// Handle 3 initial passes
-	if (auction.length < 4) {return false;
-	}
+  // Handle 3 initial passes
+  if (auction.length < 4) {
+    return false;
+  }
 
-	return countFinalConsecutivePasses(auction) >= 3;
+  return countFinalConsecutivePasses(auction) >= 3;
 }

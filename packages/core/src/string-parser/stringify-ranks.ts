@@ -1,5 +1,5 @@
-import { compareRank } from '../card';
-import { Rank } from '../types';
+import { compareRank } from "../card";
+import { type Rank } from "../types";
 
 /**
  * Convert a list of ranks into a string. The ranks do not need to be in order.
@@ -7,6 +7,6 @@ import { Rank } from '../types';
  * @returns A string representing the list of ranks
  */
 export function stringifyRanks(ranks: Rank[]): string {
-	const orderedRanks = ranks.sort(compareRank).reverse();
-	return orderedRanks.join('');
+  const orderedRanks = ranks.sort(compareRank).reverse();
+  return orderedRanks.join("");
 }

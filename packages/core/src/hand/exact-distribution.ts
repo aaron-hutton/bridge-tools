@@ -1,5 +1,5 @@
-import { countSuit } from '.';
-import { Hand, Suit } from '../types';
+import { countSuit } from ".";
+import { type Hand } from "../types";
 
 /**
  * This can be used to measure the exact distribution of a hand.
@@ -9,10 +9,10 @@ import { Hand, Suit } from '../types';
  * @returns The length of each suit in order
  */
 export function exactDistribution(hand: Hand) {
-	return [
-		countSuit(hand, Suit.Spade),
-		countSuit(hand, Suit.Heart),
-		countSuit(hand, Suit.Diamond),
-		countSuit(hand, Suit.Club),
-	];
+  return [
+    countSuit(hand, "S"),
+    countSuit(hand, "H"),
+    countSuit(hand, "D"),
+    countSuit(hand, "C"),
+  ];
 }

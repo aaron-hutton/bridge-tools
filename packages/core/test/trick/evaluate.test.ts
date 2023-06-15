@@ -1,50 +1,42 @@
-import { Trick, Types } from '../../src';
+import { Trick, type Types } from "../../src";
 
-describe('Testing Trick.evaluate', () => {
-	it('Testing a normal NT trick', () => {
-		const trick: Types.Trick = [
-			{ rank: Types.Rank.Jack, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.Queen, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.King, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.Ace, suit: Types.Suit.Spade },
-		];
+describe("Testing Trick.evaluate", () => {
+  it("Testing a normal NT trick", () => {
+    const trick: Types.Trick = [
+      { rank: "J", suit: "S" },
+      { rank: "Q", suit: "S" },
+      { rank: "K", suit: "S" },
+      { rank: "A", suit: "S" },
+    ];
 
-		expect(Trick.evaluate(trick, Types.Compass.North)).toStrictEqual(
-			Types.Compass.West
-		);
-	});
+    expect(Trick.evaluate(trick, "N")).toStrictEqual("W");
+  });
 
-	it('Testing a trump trick', () => {
-		const trick: Types.Trick = [
-			{ rank: Types.Rank.Jack, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.Queen, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.King, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.Two, suit: Types.Suit.Heart },
-		];
+  it("Testing a trump trick", () => {
+    const trick: Types.Trick = [
+      { rank: "J", suit: "S" },
+      { rank: "Q", suit: "S" },
+      { rank: "K", suit: "S" },
+      { rank: "2", suit: "H" },
+    ];
 
-		expect(
-			Trick.evaluate(trick, Types.Compass.West, Types.Suit.Heart)
-		).toStrictEqual(Types.Compass.South);
-	});
+    expect(Trick.evaluate(trick, "W", "H")).toStrictEqual("S");
+  });
 
-	it('Testing a length NT trick', () => {
-		const trick: Types.Trick = [
-			{ rank: Types.Rank.Two, suit: Types.Suit.Spade },
-			{ rank: Types.Rank.Ace, suit: Types.Suit.Heart },
-			{ rank: Types.Rank.Ace, suit: Types.Suit.Diamond },
-			{ rank: Types.Rank.Ace, suit: Types.Suit.Club },
-		];
+  it("Testing a length NT trick", () => {
+    const trick: Types.Trick = [
+      { rank: "2", suit: "S" },
+      { rank: "A", suit: "H" },
+      { rank: "A", suit: "D" },
+      { rank: "A", suit: "C" },
+    ];
 
-		expect(Trick.evaluate(trick, Types.Compass.North)).toStrictEqual(
-			Types.Compass.North
-		);
-	});
+    expect(Trick.evaluate(trick, "N")).toStrictEqual("N");
+  });
 
-	it('Testing an invalid trick', () => {
-		const trick: Types.Trick = [
-			{ rank: Types.Rank.Two, suit: Types.Suit.Spade },
-		];
+  it("Testing an invalid trick", () => {
+    const trick: Types.Trick = [{ rank: "2", suit: "S" }];
 
-		expect(() => Trick.evaluate(trick, Types.Compass.North)).toThrowError();
-	});
+    expect(() => Trick.evaluate(trick, "N")).toThrowError();
+  });
 });

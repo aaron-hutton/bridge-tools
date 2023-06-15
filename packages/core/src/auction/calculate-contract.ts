@@ -1,7 +1,7 @@
-import { isAuctionEnded, isBid } from '.';
-import { isSamePair, rotateClockwise } from '../board';
-import { AuctionCall, Compass, Contract, PossibleCalls } from '../types';
-import { calculateRecentBid } from './calculate-recent-bid';
+import { isAuctionEnded, isBid } from ".";
+import { isSamePair, rotateClockwise } from "../board";
+import { type AuctionCall, type Compass, type Contract } from "../types";
+import { calculateRecentBid } from "./calculate-recent-bid";
 
 /**
  * Calculate the contract for a given auction. We assume the auction is valid.
@@ -14,55 +14,55 @@ import { calculateRecentBid } from './calculate-recent-bid';
  * @returns The contract for the auction, or null if it is unfinished.
  */
 export function calculateContract(
-	auction: AuctionCall[],
-	dealer: Compass
+  auction: AuctionCall[],
+  dealer: Compass
 ): Contract | null {
-	if (!isAuctionEnded(auction)) {
-		return null;
-	}
+  if (!isAuctionEnded(auction)) {
+    return null;
+  }
 
-	const finalBid = calculateRecentBid(auction);
-	if (finalBid === null) {
-		return 'Passout';
-	}
+  const finalBid = calculateRecentBid(auction);
+  if (finalBid === null) {
+    return "Passout";
+  }
 
-	// Find out if it's doubled/redoubled
-	let doubled = false;
-	let redoubled = false;
+  // Find out if it's doubled/redoubled
+  let doubled = false;
+  let redoubled = false;
 
-	for (let i = auction.length - 1; i >= 0; i--) {
-		const call = auction[i].call;
-		if (call === PossibleCalls.Double) {
-			doubled = true;
-			break;
-		} else if (call === PossibleCalls.Redouble) {
-			redoubled = true;
-			break;
-		} else if (isBid(call)) {
-			break;
-		}
-	}
+  for (let i = auction.length - 1; i >= 0; i--) {
+    const call = auction[i].call;
+    if (call === "X") {
+      doubled = true;
+      break;
+    } else if (call === "XX") {
+      redoubled = true;
+      break;
+    } else if (isBid(call)) {
+      break;
+    }
+  }
 
-	const finalBidderDirection = rotateClockwise(dealer, finalBid.index);
-	let declarer = Compass.North;
-	for (let i = 0; i < auction.length; i++) {
-		const call = auction[i].call;
-		const direction = rotateClockwise(dealer, i);
-		if (
-			isBid(call) &&
-			call.suit === finalBid.bid.suit &&
-			isSamePair(direction, finalBidderDirection)
-		) {
-			declarer = direction;
-			break;
-		}
-	}
+  const finalBidderDirection = rotateClockwise(dealer, finalBid.index);
+  let declarer: Compass = "N";
+  for (let i = 0; i < auction.length; i++) {
+    const call = auction[i].call;
+    const direction = rotateClockwise(dealer, i);
+    if (
+      isBid(call) &&
+      call.suit === finalBid.bid.suit &&
+      isSamePair(direction, finalBidderDirection)
+    ) {
+      declarer = direction;
+      break;
+    }
+  }
 
-	return {
-		declarer,
-		level: finalBid.bid.level,
-		strain: finalBid.bid.suit,
-		...(doubled ? { doubled } : {}),
-		...(redoubled ? { redoubled } : {}),
-	};
+  return {
+    declarer,
+    level: finalBid.bid.level,
+    strain: finalBid.bid.suit,
+    ...(doubled ? { doubled } : {}),
+    ...(redoubled ? { redoubled } : {}),
+  };
 }

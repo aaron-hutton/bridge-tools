@@ -1,5 +1,5 @@
-import { countConsecutivePasses } from '.';
-import { AuctionCall, PossibleCalls } from '../types';
+import { countConsecutivePasses } from ".";
+import { type AuctionCall } from "../types";
 
 /**
  * Returns true if a redouble is a valid call at given index
@@ -9,23 +9,23 @@ import { AuctionCall, PossibleCalls } from '../types';
  * @returns True, if a redouble would be valid at that index
  */
 export function isRedoubleValid(
-	auction: AuctionCall[],
-	index: number
+  auction: AuctionCall[],
+  index: number
 ): boolean {
-	const consecutivePasses = countConsecutivePasses(auction, index);
-	if (consecutivePasses !== 0 && consecutivePasses !== 2) {
-		return false;
-	}
+  const consecutivePasses = countConsecutivePasses(auction, index);
+  if (consecutivePasses !== 0 && consecutivePasses !== 2) {
+    return false;
+  }
 
-	// Check that the last non-pass in the auction was a double
-	if (
-		index - 1 - consecutivePasses < 0 ||
-		auction[index - 1 - consecutivePasses].call !== PossibleCalls.Double
-	) {
-		return false;
-	}
+  // Check that the last non-pass in the auction was a double
+  if (
+    index - 1 - consecutivePasses < 0 ||
+    auction[index - 1 - consecutivePasses].call !== "X"
+  ) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /**
@@ -35,5 +35,5 @@ export function isRedoubleValid(
  * @returns True, if a redouble would be valid at this point
  */
 export function isFinalRedoubleValid(auction: AuctionCall[]): boolean {
-	return isRedoubleValid(auction, auction.length);
+  return isRedoubleValid(auction, auction.length);
 }

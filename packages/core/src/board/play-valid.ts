@@ -1,10 +1,10 @@
-import { rotateClockwise } from '.';
-import { CARDS_IN_DEAL, CARDS_IN_TRICK } from '../bridge-constants';
-import { cardToNumber } from '../card';
-import { containsCard, containsSuit, removeCard } from '../hand';
-import { evaluate } from '../trick';
-import { Deal, PlayableContract, Trick } from '../types';
-import { generateIncreasing } from '../utils/array';
+import { rotateClockwise } from ".";
+import { CARDS_IN_DEAL, CARDS_IN_TRICK } from "../bridge-constants";
+import { cardToNumber } from "../card";
+import { containsCard, containsSuit, removeCard } from "../hand";
+import { evaluate } from "../trick";
+import { type Deal, type PlayableContract, type Trick } from "../types";
+import { generateIncreasing } from "../utils/array";
 
 /**
  * Check the play is valid. This requires:
@@ -21,63 +21,61 @@ import { generateIncreasing } from '../utils/array';
  * @returns True, if the play satisfies the listed requirements
  */
 export function isPlayValid(
-	deal: Deal,
-	play: Trick[],
-	contract: PlayableContract
+  deal: Deal,
+  play: Trick[],
+  contract: PlayableContract
 ): boolean {
-	let allCardNumbers = generateIncreasing(CARDS_IN_DEAL);
-	let directionOnLead = rotateClockwise(contract.declarer, 1);
+  let allCardNumbers = generateIncreasing(CARDS_IN_DEAL);
+  let directionOnLead = rotateClockwise(contract.declarer, 1);
 
-	// We need to shallow copy the deal, so we don't overwrite it
-	const dealInPlay = {
-		N: deal.N,
-		E: deal.E,
-		S: deal.S,
-		W: deal.W,
-	};
+  // We need to shallow copy the deal, so we don't overwrite it
+  const remainingCards = {
+    N: deal.N,
+    E: deal.E,
+    S: deal.S,
+    W: deal.W,
+  };
 
-	for (let i = 0; i < play.length; i++) {
-		const trick = play[i];
+  for (let i = 0; i < play.length; i++) {
+    const trick = play[i];
 
-		// Check each played card is valid
-		for (let j = 0; j < trick.length; j += 1) {
-			const card = trick[j];
-			const cardNumber = cardToNumber(card);
-			const directionToPlay = rotateClockwise(directionOnLead, j);
-			const currentHand = dealInPlay[directionToPlay];
+    // Check each played card is valid
+    for (let j = 0; j < trick.length; j += 1) {
+      const card = trick[j];
+      const cardNumber = cardToNumber(card);
+      const directionToPlay = rotateClockwise(directionOnLead, j);
+      const currentHand = remainingCards[directionToPlay];
 
-			// Check the card hasn't already been played
-			if (!allCardNumbers.includes(cardNumber)) {
-				return false;
-			}
-			allCardNumbers = allCardNumbers.filter(
-				(number) => number !== cardNumber
-			);
+      // Check the card hasn't already been played
+      if (!allCardNumbers.includes(cardNumber)) {
+        return false;
+      }
+      allCardNumbers = allCardNumbers.filter((number) => number !== cardNumber);
 
-			// Check the card exists in the hand currently to play
-			if (!containsCard(currentHand, card)) {
-				return false;
-			}
-			dealInPlay[directionToPlay] = removeCard(currentHand, card);
+      // Check the card exists in the hand currently to play
+      if (!containsCard(currentHand, card)) {
+        return false;
+      }
+      remainingCards[directionToPlay] = removeCard(currentHand, card);
 
-			// Check that if the suit of the card isn't the suit led, this hand is void
-			if (
-				card.suit !== trick[0].suit &&
-				containsSuit(currentHand, trick[0].suit)
-			) {
-				return false;
-			}
-		}
+      // Check that if the suit of the card isn't the suit led, this hand is void
+      if (
+        card.suit !== trick[0].suit &&
+        containsSuit(currentHand, trick[0].suit)
+      ) {
+        return false;
+      }
+    }
 
-		if (trick.length !== CARDS_IN_TRICK) {
-			// Only the final trick is allowed to have less than 4 cards in it
-			if (i !== play.length - 1) {
-				return false;
-			}
-		} else {
-			directionOnLead = evaluate(trick, directionOnLead, contract.strain);
-		}
-	}
+    if (trick.length !== CARDS_IN_TRICK) {
+      // Only the final trick is allowed to have less than 4 cards in it
+      if (i !== play.length - 1) {
+        return false;
+      }
+    } else {
+      directionOnLead = evaluate(trick, directionOnLead, contract.strain);
+    }
+  }
 
-	return true;
+  return true;
 }

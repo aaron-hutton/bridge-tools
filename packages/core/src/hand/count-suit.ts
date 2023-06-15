@@ -1,5 +1,5 @@
-import { cardToNumber } from '../card';
-import { Hand, Rank, Suit } from '../types';
+import { cardToNumber } from "../card";
+import { type Hand, type Suit } from "../types";
 
 /**
  * Count the number of cards of a given suit are in a given hand
@@ -8,16 +8,16 @@ import { Hand, Rank, Suit } from '../types';
  * @returns The number of cards in the hand with that suit
  */
 export function countSuit(hand: Hand, suit: Suit) {
-	const minCardNumber = cardToNumber({ rank: Rank.Ace, suit });
-	const maxCardNumber = cardToNumber({ rank: Rank.Two, suit });
+  const minCardNumber = cardToNumber({ rank: "A", suit });
+  const maxCardNumber = cardToNumber({ rank: "2", suit });
 
-	let count = 0;
-	for (const card of hand) {
-		const number = cardToNumber(card);
-		if (number >= minCardNumber && number <= maxCardNumber) {
-			count++;
-		}
-	}
+  let count = 0;
+  for (const card of hand) {
+    const number = cardToNumber(card);
+    if (number >= minCardNumber && number <= maxCardNumber) {
+      count++;
+    }
+  }
 
-	return count;
+  return count;
 }

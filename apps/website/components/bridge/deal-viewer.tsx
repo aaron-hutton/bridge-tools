@@ -1,5 +1,6 @@
 "use client";
-import { COMPASS_DISPLAY_ORDER } from "@/utils/constants";
+
+import { COMPASS_BOARD_ORDER } from "@/utils/constants";
 import { Types } from "@bridge-tools/core";
 import React from "react";
 import { BoardBackground } from "./board-components/board-background";
@@ -14,7 +15,7 @@ export function DealViewer({ deal }: Props) {
     <BoardBackground>
       <div></div>
 
-      {COMPASS_DISPLAY_ORDER.map((direction, index) => (
+      {COMPASS_BOARD_ORDER.map((direction, index) => (
         <React.Fragment key={index}>
           <HandDiagram
             hand={deal[direction]}

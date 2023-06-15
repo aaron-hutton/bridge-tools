@@ -1,5 +1,5 @@
-import { countConsecutivePasses, isBid } from '.';
-import { AuctionCall } from '../types';
+import { countConsecutivePasses, isBid } from ".";
+import { type AuctionCall } from "../types";
 
 /**
  * Returns true if a double is a valid call at given index
@@ -9,20 +9,20 @@ import { AuctionCall } from '../types';
  * @returns True, if a double would be valid at that index
  */
 export function isDoubleValid(auction: AuctionCall[], index: number): boolean {
-	const consecutivePasses = countConsecutivePasses(auction, index);
-	if (consecutivePasses !== 0 && consecutivePasses !== 2) {
-		return false;
-	}
+  const consecutivePasses = countConsecutivePasses(auction, index);
+  if (consecutivePasses !== 0 && consecutivePasses !== 2) {
+    return false;
+  }
 
-	// Check that the last non-pass in the auction was a bid
-	if (
-		index - 1 - consecutivePasses < 0 ||
-		!isBid(auction[index - 1 - consecutivePasses].call)
-	) {
-		return false;
-	}
+  // Check that the last non-pass in the auction was a bid
+  if (
+    index - 1 - consecutivePasses < 0 ||
+    !isBid(auction[index - 1 - consecutivePasses].call)
+  ) {
+    return false;
+  }
 
-	return true;
+  return true;
 }
 
 /**
@@ -32,5 +32,5 @@ export function isDoubleValid(auction: AuctionCall[], index: number): boolean {
  * @returns True, if a double would be valid at this point
  */
 export function isFinalDoubleValid(auction: AuctionCall[]): boolean {
-	return isDoubleValid(auction, auction.length);
+  return isDoubleValid(auction, auction.length);
 }

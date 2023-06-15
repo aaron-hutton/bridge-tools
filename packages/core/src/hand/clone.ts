@@ -1,4 +1,4 @@
-import { Hand } from '../types';
+import { type Hand } from "../types";
 
 /**
  * Deep copies a hand, so there are no remaining references to the original list or cards
@@ -7,5 +7,5 @@ import { Hand } from '../types';
  * @returns A new copy of the hand which can be modified without modifying the original
  */
 export function clone(hand: Hand) {
-	return hand.map((card) => ({ suit: card.suit, rank: card.rank }));
+  return hand.map((card) => ({ suit: card.suit, rank: card.rank }));
 }

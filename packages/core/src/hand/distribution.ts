@@ -1,5 +1,5 @@
-import { Hand } from '../types';
-import { exactDistribution } from './exact-distribution';
+import { type Hand } from "../types";
+import { exactDistribution } from "./exact-distribution";
 
 /**
  * This can be used to measure the distribution of the hand.
@@ -9,9 +9,9 @@ import { exactDistribution } from './exact-distribution';
  * @returns The ordered list of the length of the suits
  */
 export function distribution(hand: Hand) {
-	// We have to pass a sorting function otherwise it sorts lexicographically
-	// This means hands with 10+ suits end up ordered wrong
-	return exactDistribution(hand)
-		.sort((a, b) => a - b)
-		.reverse();
+  // We have to pass a sorting function otherwise it sorts lexicographically
+  // This means hands with 10+ suits end up ordered wrong
+  return exactDistribution(hand)
+    .sort((a, b) => a - b)
+    .reverse();
 }

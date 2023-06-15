@@ -1,4 +1,4 @@
-import { AuctionCall, PossibleCalls } from '../types';
+import { type AuctionCall } from "../types";
 
 /**
  * Count the number of consecutive passes back from a specific call of an auction
@@ -8,17 +8,17 @@ import { AuctionCall, PossibleCalls } from '../types';
  * @returns The number of consecutive passes
  */
 export function countConsecutivePasses(
-	auction: AuctionCall[],
-	start: number
+  auction: AuctionCall[],
+  start: number
 ): number {
-	let passes = 0;
-	for (let i = start - 1; i >= 0; i--) {
-		if (auction[i].call !== PossibleCalls.Pass) {
-			return passes;
-		}
-		passes += 1;
-	}
-	return passes;
+  let passes = 0;
+  for (let i = start - 1; i >= 0; i--) {
+    if (auction[i].call !== "P") {
+      return passes;
+    }
+    passes += 1;
+  }
+  return passes;
 }
 
 /**
@@ -28,5 +28,5 @@ export function countConsecutivePasses(
  * @returns The number of consecutive passes at the end
  */
 export function countFinalConsecutivePasses(auction: AuctionCall[]): number {
-	return countConsecutivePasses(auction, auction.length);
+  return countConsecutivePasses(auction, auction.length);
 }

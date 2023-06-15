@@ -1,5 +1,5 @@
-import { equalCard } from '../card';
-import { Card, Hand } from '../types';
+import { equalCard } from "../card";
+import { type Card, type Hand } from "../types";
 
 /**
  * Checks if the given hand contains the given card
@@ -8,11 +8,11 @@ import { Card, Hand } from '../types';
  * @returns True, if the hand contains the card
  */
 export function containsCard(hand: Hand, card: Card) {
-	for (const c of hand) {
-		if (equalCard(c, card)) {
-			return true;
-		}
-	}
+  for (const c of hand) {
+    if (equalCard(c, card)) {
+      return true;
+    }
+  }
 
-	return false;
+  return false;
 }

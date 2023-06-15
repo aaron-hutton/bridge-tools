@@ -1,14 +1,16 @@
-import { Compass } from './compass';
-import { NoTrumpType, Suit } from './suit';
+import { type Compass } from "./compass";
+import { type SuitOrNT } from "./suit";
 
 export interface PlayableContract {
-	level: number;
-	strain: Suit | NoTrumpType;
+  level: number;
+  strain: SuitOrNT;
 
-	declarer: Compass;
+  declarer: Compass;
 
-	doubled?: boolean;
-	redoubled?: boolean;
+  doubled?: boolean;
+  redoubled?: boolean;
 }
 
-export type Contract = 'Passout' | PlayableContract;
+export type Passout = "Passout";
+
+export type Contract = Passout | PlayableContract;

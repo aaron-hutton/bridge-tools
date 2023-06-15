@@ -1,19 +1,13 @@
-import { stringifySuit } from '.';
-import {
-	AuctionCall,
-	NoTrump,
-	NoTrumpType,
-	PossibleCalls,
-	Suit,
-} from '../types';
+import { stringifySuit } from ".";
+import { type AuctionCall, type SuitOrNT } from "../types";
 
 /**
  * Converts the strain of a bid to a string
  * @param strain Suit or NoTrump type
  * @returns String of the relevant strain
  */
-function stringifyStrain(strain: Suit | NoTrumpType): string {
-	return strain === NoTrump ? 'NT' : stringifySuit(strain);
+function stringifyStrain(strain: SuitOrNT): string {
+  return strain === "NT" ? "NT" : stringifySuit(strain);
 }
 /**
  * Makes a call object into a string
@@ -21,18 +15,9 @@ function stringifyStrain(strain: Suit | NoTrumpType): string {
  * @returns String representation of the call
  */
 export function stringifyCall(bid: AuctionCall): string {
-	switch (bid.call) {
-		case PossibleCalls.Pass: {
-			return 'P';
-		}
-		case PossibleCalls.Double: {
-			return 'X';
-		}
-		case PossibleCalls.Redouble: {
-			return 'XX';
-		}
-		default: {
-			return bid.call.level.toString() + stringifyStrain(bid.call.suit);
-		}
-	}
+  if (bid.call === "P" || bid.call === "X" || bid.call === "XX") {
+    return bid.call;
+  }
+
+  return bid.call.level.toString() + stringifyStrain(bid.call.suit);
 }

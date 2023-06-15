@@ -1,5 +1,5 @@
-import { stringifyRanks } from '.';
-import { Card } from '../types';
+import { stringifyRanks } from ".";
+import { type Card } from "../types";
 
 /**
  * Convert a card into a string
@@ -7,5 +7,5 @@ import { Card } from '../types';
  * @returns A string representing the given card
  */
 export function stringifyCard(card: Card): string {
-	return card.suit + stringifyRanks([card.rank]);
+  return card.suit + stringifyRanks([card.rank]);
 }

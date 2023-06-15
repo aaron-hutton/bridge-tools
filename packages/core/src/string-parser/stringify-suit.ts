@@ -1,4 +1,4 @@
-import { Suit } from '../types';
+import { type Suit } from "../types";
 
 /**
  * Convert a suit into a string
@@ -6,5 +6,5 @@ import { Suit } from '../types';
  * @returns A string representing the given suit
  */
 export function stringifySuit(suit: Suit): string {
-	return suit;
+  return suit;
 }

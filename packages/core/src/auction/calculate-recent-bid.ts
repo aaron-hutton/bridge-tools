@@ -1,5 +1,5 @@
-import { isBid } from '.';
-import { AuctionCall, Bid } from '../types';
+import { isBid } from ".";
+import { type AuctionCall, type Bid } from "../types";
 
 /**
  * Calculates the most recent bid in the auction, this can
@@ -11,17 +11,17 @@ import { AuctionCall, Bid } from '../types';
  * @returns An object which contains the most recent bid (not call) with the index it occurs or null if nothing has been bid
  */
 export function calculateRecentBidForIndex(
-	auction: AuctionCall[],
-	index: number
+  auction: AuctionCall[],
+  index: number
 ): { bid: Bid; index: number } | null {
-	for (let i = index; i >= 0; i--) {
-		const call = auction[i].call;
-		if (isBid(call)) {
-			return { bid: call, index: i };
-		}
-	}
+  for (let i = index; i >= 0; i--) {
+    const call = auction[i].call;
+    if (isBid(call)) {
+      return { bid: call, index: i };
+    }
+  }
 
-	return null;
+  return null;
 }
 
 /**
@@ -33,7 +33,7 @@ export function calculateRecentBidForIndex(
  * @returns An object which contains the most recent bid (not call) with the index it occurs or null if nothing has been bid
  */
 export function calculateRecentBid(
-	auction: AuctionCall[]
+  auction: AuctionCall[]
 ): { bid: Bid; index: number } | null {
-	return calculateRecentBidForIndex(auction, auction.length - 1);
+  return calculateRecentBidForIndex(auction, auction.length - 1);
 }

@@ -1,11 +1,11 @@
-import { Board, Types } from '../../src';
+import { Board } from "../../src";
 
-describe('Testing Board.calculateDealer', () => {
-	it('Testing a board number', () => {
-		expect(Board.calculateDealer(7)).toStrictEqual(Types.Compass.South);
-	});
+describe("Testing Board.calculateDealer", () => {
+  it("Testing a board number", () => {
+    expect(Board.calculateDealer(7)).toStrictEqual("S");
+  });
 
-	it('Testing an Exception is thrown for negative board number', () => {
-		expect(() => Board.calculateDealer(-1)).toThrowError();
-	});
+  it("Testing an Exception is thrown for negative board number", () => {
+    expect(() => Board.calculateDealer(-1)).toThrowError();
+  });
 });

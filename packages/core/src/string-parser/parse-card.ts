@@ -1,6 +1,6 @@
-import { parseRanks } from '.';
-import { Card } from '../types';
-import { parseSuit } from './parse-suit';
+import { parseRanks } from ".";
+import { type Card } from "../types";
+import { parseSuit } from "./parse-suit";
 
 /**
  * Parse a single card. It will be represented by suit then rank, e.g. SA for ace of spades
@@ -8,12 +8,12 @@ import { parseSuit } from './parse-suit';
  * @returns The card or an error if it cannot be parsed
  */
 export function parseCard(str: string): Card {
-	const suit = parseSuit(str[0] ?? '');
-	const ranks = parseRanks(str[1] ?? '');
+  const suit = parseSuit(str[0] ?? "");
+  const ranks = parseRanks(str[1] ?? "");
 
-	if (ranks.length !== 1) {
-		throw new Error(`Failed to parse card with string: ${str}`);
-	}
+  if (ranks.length !== 1) {
+    throw new Error(`Failed to parse card with string: ${str}`);
+  }
 
-	return { suit, rank: ranks[0] };
+  return { suit, rank: ranks[0] };
 }

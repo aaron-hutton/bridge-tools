@@ -1,11 +1,11 @@
-import { StringParser, Types } from '../../src';
+import { StringParser } from "../../src";
 
-describe('Testing StringParser.parseSuit', () => {
-	it('Test parsing a suit', () => {
-		expect(StringParser.parseSuit('S')).toStrictEqual(Types.Suit.Spade);
-	});
+describe("Testing StringParser.parseSuit", () => {
+  it("Test parsing a suit", () => {
+    expect(StringParser.parseSuit("S")).toStrictEqual("S");
+  });
 
-	it('Test throwing an error on a non-suit', () => {
-		expect(() => StringParser.parseSuit('F')).toThrowError();
-	});
+  it("Test throwing an error on a non-suit", () => {
+    expect(() => StringParser.parseSuit("F")).toThrowError();
+  });
 });

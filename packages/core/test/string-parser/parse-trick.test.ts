@@ -1,37 +1,37 @@
-import { StringParser, Types } from '../../src';
+import { StringParser } from "../../src";
 
-describe('Testing StringParser.parseTrick', () => {
-	it('Test parsing a trick', () => {
-		expect(StringParser.parseTrick(' SASKSQSJ ')).toStrictEqual([
-			{
-				suit: Types.Suit.Spade,
-				rank: Types.Rank.Ace,
-			},
-			{
-				suit: Types.Suit.Spade,
-				rank: Types.Rank.King,
-			},
-			{
-				suit: Types.Suit.Spade,
-				rank: Types.Rank.Queen,
-			},
-			{
-				suit: Types.Suit.Spade,
-				rank: Types.Rank.Jack,
-			},
-		]);
-	});
+describe("Testing StringParser.parseTrick", () => {
+  it("Test parsing a trick", () => {
+    expect(StringParser.parseTrick(" SASKSQSJ ")).toStrictEqual([
+      {
+        suit: "S",
+        rank: "A",
+      },
+      {
+        suit: "S",
+        rank: "K",
+      },
+      {
+        suit: "S",
+        rank: "Q",
+      },
+      {
+        suit: "S",
+        rank: "J",
+      },
+    ]);
+  });
 
-	it('Test parsing an incomplete trick', () => {
-		expect(StringParser.parseTrick('SA')).toStrictEqual([
-			{
-				suit: Types.Suit.Spade,
-				rank: Types.Rank.Ace,
-			},
-		]);
-	});
+  it("Test parsing an incomplete trick", () => {
+    expect(StringParser.parseTrick("SA")).toStrictEqual([
+      {
+        suit: "S",
+        rank: "A",
+      },
+    ]);
+  });
 
-	it('Test a 5 card trick throws an error', () => {
-		expect(() => StringParser.parseTrick('SASKSQSJST')).toThrow();
-	});
+  it("Test a 5 card trick throws an error", () => {
+    expect(() => StringParser.parseTrick("SASKSQSJST")).toThrow();
+  });
 });

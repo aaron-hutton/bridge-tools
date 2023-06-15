@@ -1,5 +1,5 @@
-import { compareRank } from '.';
-import { Card, NoTrumpType, Suit } from '../types';
+import { compareRank } from ".";
+import { type Card, type SuitOrNT } from "../types";
 
 /**
  * Compare the two cards, return 0 if they are equal and -1 is
@@ -16,21 +16,21 @@ import { Card, NoTrumpType, Suit } from '../types';
  * @returns The comparison of the cards
  */
 export function compare(
-	card1: Card,
-	card2: Card,
-	trumpSuit?: Suit | NoTrumpType
+  card1: Card,
+  card2: Card,
+  trumpSuit?: SuitOrNT
 ): number {
-	if (card1.suit === card2.suit) {
-		return compareRank(card1.rank, card2.rank);
-	}
+  if (card1.suit === card2.suit) {
+    return compareRank(card1.rank, card2.rank);
+  }
 
-	if (card1.suit === trumpSuit) {
-		return 1;
-	}
+  if (card1.suit === trumpSuit) {
+    return 1;
+  }
 
-	if (card2.suit === trumpSuit) {
-		return -1;
-	}
+  if (card2.suit === trumpSuit) {
+    return -1;
+  }
 
-	return 1;
+  return 1;
 }
