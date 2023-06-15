@@ -1,6 +1,6 @@
-import { BIG_INTEGER_2_32, INTEGER_2_32 } from '../constants';
-import { RandomGenerator } from '../random';
-import { multipleAttempts } from './multiple-attempts';
+import { BIG_INTEGER_2_32, INTEGER_2_32 } from "../constants";
+import { type RandomGenerator } from "../random";
+import { multipleAttempts } from "./multiple-attempts";
 
 /**
  * This random generator should be used for quick dealing, such as during simulations. Most implementations
@@ -10,15 +10,15 @@ import { multipleAttempts } from './multiple-attempts';
  * respectively and sums them.
  */
 export const MathRandomNumberGenerator: RandomGenerator = () => {
-	return multipleAttempts(() => {
-		const rand1 = Math.floor(Math.random() * INTEGER_2_32);
-		const rand2 = Math.floor(Math.random() * INTEGER_2_32);
-		const rand3 = Math.floor(Math.random() * INTEGER_2_32);
+  return multipleAttempts(() => {
+    const rand1 = Math.floor(Math.random() * INTEGER_2_32);
+    const rand2 = Math.floor(Math.random() * INTEGER_2_32);
+    const rand3 = Math.floor(Math.random() * INTEGER_2_32);
 
-		const bRand1 = BigInt(rand1) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
-		const bRand2 = BigInt(rand2) * BIG_INTEGER_2_32;
-		const bRand3 = BigInt(rand3);
+    const bRand1 = BigInt(rand1) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
+    const bRand2 = BigInt(rand2) * BIG_INTEGER_2_32;
+    const bRand3 = BigInt(rand3);
 
-		return bRand1 + bRand2 + bRand3;
-	});
+    return bRand1 + bRand2 + bRand3;
+  });
 };

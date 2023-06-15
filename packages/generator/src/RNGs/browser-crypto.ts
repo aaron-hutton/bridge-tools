@@ -1,6 +1,6 @@
-import { BIG_INTEGER_2_32 } from '../constants';
-import { type RandomGenerator } from '../random';
-import { multipleAttempts } from './multiple-attempts';
+import { BIG_INTEGER_2_32 } from "../constants";
+import { type RandomGenerator } from "../random";
+import { multipleAttempts } from "./multiple-attempts";
 
 /**
  * This random generator should be used in browsers, it should be cryptographically secure, so can be used tournament dealing.
@@ -10,16 +10,15 @@ import { multipleAttempts } from './multiple-attempts';
  * respectively and sums them.
  */
 export const BrowserCryptoRandomNumberGenerator: RandomGenerator = () => {
-	return multipleAttempts(() => {
-		const values = new Uint32Array(3);
+  return multipleAttempts(() => {
+    const values = new Uint32Array(3);
 
-		//@ts-expect-error window is undefined
-		window.crypto.getRandomValues(values);
+    window.crypto.getRandomValues(values);
 
-		const rand1 = BigInt(values[0]) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
-		const rand2 = BigInt(values[1]) * BIG_INTEGER_2_32;
-		const rand3 = BigInt(values[2]);
+    const rand1 = BigInt(values[0]) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
+    const rand2 = BigInt(values[1]) * BIG_INTEGER_2_32;
+    const rand3 = BigInt(values[2]);
 
-		return rand1 + rand2 + rand3;
-	});
+    return rand1 + rand2 + rand3;
+  });
 };
