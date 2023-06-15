@@ -7,7 +7,7 @@ import { type Deal } from "../types";
  * @param deal The deal to be copied
  * @returns A new copy of the deal which can be modified without modifying the original
  */
-export function clone(deal: Deal) {
+export function clone(deal: Deal): Deal {
   return {
     N: Hand.clone(deal.N),
     E: Hand.clone(deal.E),

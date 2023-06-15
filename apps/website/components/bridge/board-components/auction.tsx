@@ -10,11 +10,11 @@ function AuctionItem({ call }: { call: Types.AuctionCall }) {
   });
 
   switch (call.call) {
-    case Types.PossibleCalls.Pass:
+    case "P":
       return <div className={classes}>P</div>;
-    case Types.PossibleCalls.Double:
+    case "X":
       return <div className={classes}>X</div>;
-    case Types.PossibleCalls.Redouble:
+    case "XX":
       return <div className={classes}>XX</div>;
     default:
       return (
@@ -34,7 +34,7 @@ interface Props {
 export function AuctionDiagram({ dealer, auction }: Props) {
   const blanks = useMemo(() => {
     let b = [];
-    let direction = Types.Compass.West;
+    let direction: Types.Compass = "W";
     while (direction !== dealer) {
       b.push("");
       direction = Board.rotateClockwise(direction, 1);

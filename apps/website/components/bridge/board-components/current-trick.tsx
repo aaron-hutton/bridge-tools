@@ -11,9 +11,7 @@ interface Props {
 export function CurrentTrick({ deal, trick }: Props) {
   const firstCard = trick[0];
   const startDirection =
-    firstCard !== undefined
-      ? Deal.findCard(deal, firstCard) ?? Types.Compass.North
-      : Types.Compass.North;
+    firstCard !== undefined ? Deal.findCard(deal, firstCard) ?? "N" : "N";
   return (
     <div className="grid grid-cols-3 grid-rows-3 sm:p-2">
       <div></div>

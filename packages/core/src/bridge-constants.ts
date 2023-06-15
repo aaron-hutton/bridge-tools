@@ -1,3 +1,5 @@
+import { type Compass, type Suit, type SuitOrNT } from "./types";
+
 export const CARDS_IN_SUIT = 13;
 
 export const CARDS_IN_HAND = 13;
@@ -15,3 +17,7 @@ export const COMPASS_DIRECTIONS = 4;
 export const VULNERABILITIES = 16;
 
 export const LARGEST_BID_LEVEL = 7;
+
+export const ALL_COMPASS: Compass[] = ["N", "E", "S", "W"];
+export const ALL_SUITS: Suit[] = ["S", "H", "D", "C"];
+export const ALL_SUITS_NT: SuitOrNT[] = ["NT", "S", "H", "D", "C"];

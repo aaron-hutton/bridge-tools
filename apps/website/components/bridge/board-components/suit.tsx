@@ -8,13 +8,13 @@ interface Props {
 
 export function SuitSymbol({ suit, className }: Props) {
   switch (suit) {
-    case Types.Suit.Spade:
+    case "S":
       return <Icons.spade className={`text-black ${className}`} />;
-    case Types.Suit.Heart:
+    case "H":
       return <Icons.heart className={`text-red-700 ${className}`} />;
-    case Types.Suit.Diamond:
+    case "D":
       return <Icons.diamond className={`text-orange-700 ${className}`} />;
-    case Types.Suit.Club:
+    case "C":
       return <Icons.club className={`text-green-900 ${className}`} />;
   }
 }

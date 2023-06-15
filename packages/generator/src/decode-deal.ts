@@ -1,4 +1,4 @@
-import { Card, Constants, Types } from "@bridge-tools/core";
+import { Card, Constants, type Types } from "@bridge-tools/core";
 import { NUMBER_OF_DEALS } from "./constants";
 
 /**
@@ -35,7 +35,7 @@ export function decodeDeal(id: bigint): Types.Deal {
 
     const remainingCards = CARDS_IN_DEAL - BigInt(cardNum);
 
-    for (const direction of Object.values(Types.Compass)) {
+    for (const direction of Constants.ALL_COMPASS) {
       const spaceInHand = CARDS_IN_HAND - BigInt(deal[direction].length);
       const threshold = (remainingSpace * spaceInHand) / remainingCards;
 

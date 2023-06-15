@@ -38,8 +38,7 @@ export function CardplayPanel({ play, deal, contract }: Props) {
           {play.map((trick, index) => {
             const firstCard = trick[0];
             if (firstCard === undefined) return null;
-            const leader =
-              Deal.findCard(deal, firstCard) ?? Types.Compass.North;
+            const leader = Deal.findCard(deal, firstCard) ?? "N";
             const winner =
               trick.length === Constants.CARDS_IN_TRICK
                 ? Trick.evaluate(trick, leader, contract.strain)

@@ -27,12 +27,10 @@ export function HandDiagram({
   const separatedCards = useMemo(() => {
     const sortedHand = Hand.sort(Hand.clone(hand));
     return [
-      sortedHand.filter((c) => c.suit === Types.Suit.Spade).map((c) => c.rank),
-      sortedHand.filter((c) => c.suit === Types.Suit.Heart).map((c) => c.rank),
-      sortedHand
-        .filter((c) => c.suit === Types.Suit.Diamond)
-        .map((c) => c.rank),
-      sortedHand.filter((c) => c.suit === Types.Suit.Club).map((c) => c.rank),
+      sortedHand.filter((c) => c.suit === "S").map((c) => c.rank),
+      sortedHand.filter((c) => c.suit === "H").map((c) => c.rank),
+      sortedHand.filter((c) => c.suit === "D").map((c) => c.rank),
+      sortedHand.filter((c) => c.suit === "C").map((c) => c.rank),
     ];
   }, [hand]);
 
@@ -52,7 +50,7 @@ export function HandDiagram({
       }
       className="overflow-x-auto text-lg"
     >
-      {Object.values(Types.Suit).map((suit, index) => {
+      {Constants.ALL_SUITS.map((suit, index) => {
         const classes = cn("flex h-8 w-full items-center bg-gray-200 p-2", {
           "rounded-b-md": index === Constants.NUMBER_OF_SUITS - 1,
         });

@@ -2,7 +2,7 @@ import { Types } from "@bridge-tools/core";
 import { SuitSymbol } from "./suit";
 
 interface Props {
-  strain: Types.Suit | Types.NoTrumpType;
+  strain: Types.SuitOrNT;
   className?: string;
 }
 

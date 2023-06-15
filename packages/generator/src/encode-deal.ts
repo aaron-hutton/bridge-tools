@@ -1,4 +1,4 @@
-import { Card, Constants, Deal, Hand, Types } from "@bridge-tools/core";
+import { Card, Constants, Deal, Hand, type Types } from "@bridge-tools/core";
 import { NUMBER_OF_DEALS } from "./constants";
 
 /**
@@ -19,7 +19,7 @@ export function encodeDeal(deal: Types.Deal): bigint {
     const card = Card.numberToCard(cardNum);
 
     const remainingCards = CARDS_IN_DEAL - BigInt(cardNum);
-    for (const direction of Object.values(Types.Compass)) {
+    for (const direction of Constants.ALL_COMPASS) {
       const hand = dealClone[direction];
 
       const spaceInHand = BigInt(hand.length);

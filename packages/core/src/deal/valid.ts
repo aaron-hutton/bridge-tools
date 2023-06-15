@@ -1,6 +1,6 @@
-import { CARDS_IN_DEAL, CARDS_IN_HAND } from "../bridge-constants";
+import { ALL_COMPASS, CARDS_IN_DEAL, CARDS_IN_HAND } from "../bridge-constants";
 import { cardToNumber } from "../card";
-import { ALL_COMPASS, type Deal } from "../types";
+import { type Deal } from "../types";
 import { generateIncreasing } from "../utils/array";
 
 /**
