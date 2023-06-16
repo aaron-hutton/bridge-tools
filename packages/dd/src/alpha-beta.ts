@@ -1,5 +1,22 @@
 import { Board, Deal, Hand, Trick, type Types } from "@bridge-tools/core";
 
+export function solveFinalTrick(
+  deal: Types.Deal,
+  contract: Types.PlayableContract,
+  direction: Types.Compass,
+  currentTricks: number
+) {
+  const trick = [
+    deal[direction][0],
+    deal[Board.rotateClockwise(direction, 1)][0],
+    deal[Board.rotateClockwise(direction, 2)][0],
+    deal[Board.rotateClockwise(direction, 3)][0],
+  ];
+
+  const winner = Trick.evaluate(trick, direction, contract.strain);
+  return currentTricks + (Board.isNorthSouth(winner) ? 1 : 0);
+}
+
 export function advance(
   deal: Types.Deal,
   trick: Types.Trick,
@@ -45,8 +62,8 @@ export function search(
   NSbeta: number,
   currentTricks: number
 ) {
-  if (deal[direction].length === 0) {
-    return currentTricks;
+  if (deal[direction].length === 1) {
+    return solveFinalTrick(deal, contract, direction, currentTricks);
   }
 
   const playableCards = Trick.generatePlayableCards(trick, deal[direction]);
