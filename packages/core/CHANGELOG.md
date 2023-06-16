@@ -1,5 +1,11 @@
 # @bridge-tools/core
 
+## 0.2.1
+
+### Patch Changes
+
+- c4577df: Added functions to calculate playable cards for a trick
+
 ## 0.2.0
 
 ### Minor Changes
