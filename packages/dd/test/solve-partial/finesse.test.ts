@@ -1,5 +1,5 @@
 import { StringParser, type Types } from "@bridge-tools/core";
-import { solvePartial } from "../src/solve-partial";
+import { solvePartial } from "../../src/solve-partial";
 
 const deal: Types.Deal = {
   N: StringParser.parseHand("AQ...", true),

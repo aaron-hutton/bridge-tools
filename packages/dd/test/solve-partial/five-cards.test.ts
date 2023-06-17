@@ -1,5 +1,5 @@
 import { Hand, StringParser, type Types } from "@bridge-tools/core";
-import { solvePartial } from "../src/solve-partial";
+import { solvePartial } from "../../src/solve-partial";
 
 // This ending is taken from https://bridgevid.com/2016/08/24/5-card-ending-double-dummy-1/
 const deal: Types.Deal = {

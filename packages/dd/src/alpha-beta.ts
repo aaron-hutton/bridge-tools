@@ -1,91 +1,89 @@
-import { Board, Deal, Hand, Trick, type Types } from "@bridge-tools/core";
+import {
+  evaluateTrick,
+  playableCards,
+  type CanonicalCard,
+} from "./canonical-card";
+import { isNS, type SolverState } from "./solver-state";
 
-export function solveFinalTrick(
-  deal: Types.Deal,
-  contract: Types.PlayableContract,
-  direction: Types.Compass,
-  currentTricks: number
-) {
+export function solveFinalTrick(state: SolverState) {
   const trick = [
-    deal[direction][0],
-    deal[Board.rotateClockwise(direction, 1)][0],
-    deal[Board.rotateClockwise(direction, 2)][0],
-    deal[Board.rotateClockwise(direction, 3)][0],
+    state.deal[state.direction][0],
+    state.deal[(state.direction + 1) % 4][0],
+    state.deal[(state.direction + 2) % 4][0],
+    state.deal[(state.direction + 3) % 4][0],
   ];
 
-  const winner = Trick.evaluate(trick, direction, contract.strain);
-  return currentTricks + (Board.isNorthSouth(winner) ? 1 : 0);
+  const winner = evaluateTrick(trick, state.trump, state.direction);
+  return state.currentTricks + (isNS(winner) ? 1 : 0);
 }
 
-export function advance(
-  deal: Types.Deal,
-  trick: Types.Trick,
-  contract: Types.PlayableContract,
-  direction: Types.Compass,
-  NSalpha: number,
-  NSbeta: number,
-  currentTricks: number,
-  cardToPlay: Types.Card
-) {
-  const newDeal = Deal.clone(deal);
-  newDeal[direction] = Hand.removeCard(newDeal[direction], cardToPlay);
+export function advance(state: SolverState, cardToPlay: CanonicalCard) {
+  let canonicalIndex = -1;
+  cardToPlay.count--;
 
-  const newTrick = [...trick, cardToPlay];
-
-  if (newTrick.length === 4) {
-    const winner = Trick.evaluate(
-      newTrick,
-      Board.rotateClockwise(direction, 1),
-      contract.strain
+  if (cardToPlay.count === 0) {
+    canonicalIndex = state.deal[state.direction].findIndex(
+      (c) => c === cardToPlay
     );
-    const newTricks = currentTricks + (Board.isNorthSouth(winner) ? 1 : 0);
-    return search(newDeal, [], contract, winner, NSalpha, NSbeta, newTricks);
+    state.deal[state.direction].splice(canonicalIndex, 1);
+  }
+
+  state.trick.push(cardToPlay);
+
+  let retval = -1;
+
+  if (state.trick.length === 4) {
+    const initialTrick = state.trick;
+    const initialNSTricks = state.currentTricks;
+    const initialDirection = state.direction;
+
+    const winner = evaluateTrick(
+      state.trick,
+      state.trump,
+      (state.direction + 1) % 4
+    );
+    state.currentTricks = state.currentTricks + (isNS(winner) ? 1 : 0);
+    state.direction = winner;
+    state.trick = [];
+
+    retval = search(state);
+
+    state.trick = initialTrick;
+    state.currentTricks = initialNSTricks;
+    state.direction = initialDirection;
   } else {
-    return search(
-      newDeal,
-      newTrick,
-      contract,
-      Board.rotateClockwise(direction, 1),
-      NSalpha,
-      NSbeta,
-      currentTricks
-    );
+    const initialDirection = state.direction;
+    state.direction = (state.direction + 1) % 4;
+
+    retval = search(state);
+
+    state.direction = initialDirection;
   }
+
+  state.trick.pop();
+
+  if (cardToPlay.count === 0) {
+    state.deal[state.direction].splice(canonicalIndex, 0, cardToPlay);
+  }
+
+  cardToPlay.count++;
+  return retval;
 }
 
-export function search(
-  deal: Types.Deal,
-  trick: Types.Trick,
-  contract: Types.PlayableContract,
-  direction: Types.Compass,
-  NSalpha: number,
-  NSbeta: number,
-  currentTricks: number
-) {
-  if (deal[direction].length === 1) {
-    return solveFinalTrick(deal, contract, direction, currentTricks);
+export function search(state: SolverState) {
+  const currentHand = state.deal[state.direction];
+  if (currentHand.length === 1 && currentHand[0].count === 1) {
+    return solveFinalTrick(state);
   }
 
-  const playableCards = Trick.generatePlayableCards(trick, deal[direction]);
-  let currentAlpha = NSalpha;
-  let currentBeta = NSbeta;
+  const playable = playableCards(state.trick, currentHand);
+  let currentAlpha = state.alpha;
+  let currentBeta = state.beta;
 
-  if (Board.isNorthSouth(direction)) {
+  if (isNS(state.direction)) {
     let maxTricks = -1;
-    for (const card of playableCards) {
-      maxTricks = Math.max(
-        maxTricks,
-        advance(
-          deal,
-          trick,
-          contract,
-          direction,
-          currentAlpha,
-          currentBeta,
-          currentTricks,
-          card
-        )
-      );
+    for (const card of playable) {
+      maxTricks = Math.max(maxTricks, advance(state, card));
 
       if (maxTricks > currentBeta) {
         break;
@@ -96,20 +94,8 @@ export function search(
     return maxTricks;
   } else {
     let minTricks = 1000;
-    for (const card of playableCards) {
-      minTricks = Math.min(
-        minTricks,
-        advance(
-          deal,
-          trick,
-          contract,
-          direction,
-          currentAlpha,
-          currentBeta,
-          currentTricks,
-          card
-        )
-      );
+    for (const card of playable) {
+      minTricks = Math.min(minTricks, advance(state, card));
 
       if (minTricks < currentAlpha) {
         break;

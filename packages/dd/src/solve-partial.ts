@@ -1,5 +1,7 @@
 import { type Types } from "@bridge-tools/core";
 import { search } from "./alpha-beta";
+import { convertDealToCanonical } from "./canonical-card";
+import { COMPASS_TO_NUMBER } from "./compass-map";
 
 export function solvePartial(
   deal: Types.Deal,
@@ -7,5 +9,15 @@ export function solvePartial(
   contract: Types.PlayableContract,
   direction: Types.Compass
 ) {
-  return search(deal, trick, contract, direction, -1, 1000, 0);
+  const canonicalDeal = convertDealToCanonical(deal);
+
+  return search({
+    deal: canonicalDeal,
+    trick: [],
+    trump: contract.strain,
+    direction: COMPASS_TO_NUMBER[direction],
+    alpha: -1,
+    beta: 1000,
+    currentTricks: 0,
+  });
 }
