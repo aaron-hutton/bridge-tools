@@ -5,9 +5,8 @@ export interface SolverState {
   deal: CanonicalCard[][];
   trick: CanonicalCard[];
   direction: number;
-  alpha: number;
-  beta: number;
   currentTricks: number;
+  problemSize: number;
   trump: Types.SuitOrNT;
 }
 

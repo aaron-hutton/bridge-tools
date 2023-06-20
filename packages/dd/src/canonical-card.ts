@@ -34,6 +34,26 @@ export function convertDealToCanonical(deal: Types.Deal): CanonicalCard[][] {
   return canonicalDeal;
 }
 
+export function hashCanonicalDeal(
+  deal: CanonicalCard[][],
+  direction: number,
+  trick: CanonicalCard[]
+) {
+  const result: string[] = [];
+
+  deal.forEach((hand) => {
+    hand.forEach((card) => {
+      result.push(`${card.strain}${card.level}${card.count}`);
+    });
+  });
+  result.push(direction.toString());
+  trick.forEach((card) => {
+    result.push(`${card.strain}${card.level}${card.count}`);
+  });
+
+  return result.join();
+}
+
 export function evaluateTrick(
   trick: CanonicalCard[],
   trump: Types.SuitOrNT,

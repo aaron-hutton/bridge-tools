@@ -11,13 +11,17 @@ export function solvePartial(
 ) {
   const canonicalDeal = convertDealToCanonical(deal);
 
-  return search({
-    deal: canonicalDeal,
-    trick: [],
-    trump: contract.strain,
-    direction: COMPASS_TO_NUMBER[direction],
-    alpha: -1,
-    beta: 1000,
-    currentTricks: 0,
-  });
+  return search(
+    {
+      deal: canonicalDeal,
+      trick: [],
+      trump: contract.strain,
+      direction: COMPASS_TO_NUMBER[direction],
+      currentTricks: 0,
+      problemSize: deal.N.length,
+    },
+    -1,
+    1000,
+    new Map()
+  );
 }
