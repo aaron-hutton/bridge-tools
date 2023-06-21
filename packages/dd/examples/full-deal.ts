@@ -1,7 +1,8 @@
 import { StringParser, type Types } from "@bridge-tools/core";
 import { performance } from "perf_hooks";
-import { cacheHit, cacheMiss, endPositionsReached } from "../src/alpha-beta";
-import { solveDeal } from "../src/solve-deal";
+import { endPositionsReached } from "../src/alpha-beta";
+import { searchAll } from "../src/zero-window";
+import { lowerBoundHit, upperBoundHit } from "../src/zero-window/search";
 
 // const deal: Types.Deal = {
 //   N: StringParser.parseHand("KJ8.43.T8432.AJ5"),
@@ -33,13 +34,13 @@ const deal7: Types.Deal = {
   S: StringParser.parseHand("Q.Q8..KQT9", true),
   W: StringParser.parseHand("2.T.AKQ.72", true),
 };
-const deal5: Types.Deal = {
+const deal6: Types.Deal = {
   N: StringParser.parseHand(".4.T8.AJ5", true),
   E: StringParser.parseHand("A.AK.96.4", true),
   S: StringParser.parseHand(".Q8..KQT9", true),
   W: StringParser.parseHand(".T.AKQ.72", true),
 };
-const deal4: Types.Deal = {
+const deal5: Types.Deal = {
   N: StringParser.parseHand("..T8.AJ5", true),
   E: StringParser.parseHand(".AK.96.4", true),
   S: StringParser.parseHand(".Q..KQT9", true),
@@ -60,13 +61,14 @@ const deal2: Types.Deal = {
 
 const start = performance.now();
 
-const solution = solveDeal(deal10, { declarer: "W", level: 4, strain: "H" });
+// const solution = solveDeal(deal3, { declarer: "W", level: 4, strain: "H" });
+const solution = searchAll(deal8, [], "H", "S");
 
 const end = performance.now();
 
 console.log(`NS can take ${solution} tricks`);
-console.log(`We missed the cache ${cacheMiss}`);
-console.log(`We hit the cache ${cacheHit}`);
+console.log(`We hit the lowerbound ${lowerBoundHit}`);
+console.log(`We hit the upperbound ${upperBoundHit}`);
 console.log(`We reached ${endPositionsReached} end positions`);
 
 const elapsed = end - start;

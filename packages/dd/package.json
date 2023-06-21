@@ -13,6 +13,7 @@
   "scripts": {
     "lint": "eslint \"src/**/*.ts*\"",
     "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build-example": "tsup examples/full-deal.ts -d examples",
     "test": "jest test --collect-coverage"
   },
   "dependencies": {
@@ -20,7 +21,7 @@
   },
   "devDependencies": {
     "@types/jest": "^29.5.2",
-    "@types/node":"^20.3.1",
+    "@types/node": "^20.3.1",
     "eslint-config-bridge-tools": "workspace:*",
     "jest": "^29.5.0",
     "@bridge-tools/tsconfig": "workspace:*",

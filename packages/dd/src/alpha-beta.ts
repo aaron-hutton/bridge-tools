@@ -91,7 +91,7 @@ export function search(
 ) {
   let hash = "";
   if (state.trick.length === 0) {
-    hash = hashCanonicalDeal(state.deal, state.direction, state.trick);
+    hash = hashCanonicalDeal(state.deal, state.direction);
     const memoValue = memo.get(hash);
     if (memoValue !== undefined) {
       cacheHit++;
