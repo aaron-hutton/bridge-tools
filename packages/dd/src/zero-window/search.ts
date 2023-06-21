@@ -125,7 +125,13 @@ export function zeroWindowSearch(
     }
   }
 
-  const playable = playableCards(state.trick, currentHand);
+  const playable = playableCards(
+    state.deal,
+    state.trick,
+    currentHand,
+    state.trump
+  );
+
   let result = false;
 
   if (isNS(state.direction)) {

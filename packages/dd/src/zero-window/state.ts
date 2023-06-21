@@ -1,9 +1,9 @@
 import { type Types } from "@bridge-tools/core";
-import { type CanonicalCard } from "../canonical-card";
+import { type CanonicalDeal, type CanonicalTrick } from "../canonical-card";
 
 export interface ZeroWindowState {
-  deal: CanonicalCard[][];
-  trick: CanonicalCard[];
+  deal: CanonicalDeal;
+  trick: CanonicalTrick;
   direction: number;
   currentTricks: number;
   trump: Types.SuitOrNT;
