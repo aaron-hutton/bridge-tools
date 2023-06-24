@@ -26,4 +26,15 @@ export function playableCards(
   return hand.filter((card) => card.strain === trickSuit);
 }
 
-// function reorderHand(deal: CanonicalCard[][]);
+function reorderHand(deal: CanonicalDeal, hand: CanonicalHand, trump: Types.SuitOrNT) {
+
+  console.log("Empty");
+}
+
+function reorderHandNT(hand: CanonicalDeal) {
+  console.log("Empty");
+}
+
+// function orderSuitsForSide(: CanonicalDeal, direction: number) {
+//   let counter = []
+// }

@@ -8,4 +8,7 @@ export interface CanonicalCard {
 
 export type CanonicalTrick = CanonicalCard[];
 export type CanonicalHand = CanonicalCard[];
-export type CanonicalDeal = CanonicalHand[];
+export type CanonicalDeal = {
+  deal: CanonicalHand[];
+  lengths: Map<Types.Suit, number>[];
+};

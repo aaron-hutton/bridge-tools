@@ -1,6 +1,6 @@
 import { type CanonicalDeal } from "./type";
 
-export function hashCanonicalDeal(deal: CanonicalDeal, direction: number) {
+export function hashCanonicalDeal({ deal }: CanonicalDeal, direction: number) {
   const result: string[] = [];
 
   deal.forEach((hand) => {
