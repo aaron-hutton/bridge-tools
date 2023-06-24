@@ -1,11 +1,12 @@
 {
-  "name": "@bridge-tools/dd",
+  "name": "@bridge-tools/dd-native",
   "license": "MIT",
   "version": "0.0.1",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/aaron-hutton/bridge-tools.git",
-    "directory": "packages/dd"
+    "directory": "packages/dd-native"
   },
   "main": "dist/index.js",
   "module": "dist/index.mjs",

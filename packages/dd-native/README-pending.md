@@ -1,4 +1,4 @@
-# @bridge-tools/dd
+# @bridge-tools/dd-native
 
 This is the double-dummy library which is part of the `@bridge-tools` suite of open-source bridge libraries written in Typescript. For more information on the `@bridge-tools` libraries, see [@bridge-tools/core](https://github.com/aaron-hutton/bridge-tools/tree/main/packages/core).
 
