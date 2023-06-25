@@ -62,3 +62,4 @@ If you would like to support further development of the `@bridge-tools` suite yo
 # Acknowledegments
 
 1. [dds](https://github.com/dds-bridge/dds) - Bo Haglund/Soren Hein - Formed the basis on which the library was built.
+2. [Double Dummy Analysis in a web browser](https://grahamhazel.com/blog/2023/02/06/double-dummy-analysis-in-a-web-browser/) - Graham Hazel - Write an amazing article describing how to convert dds to wasm. The initial build of `@bridge-tools/dd` made heavy use of it.

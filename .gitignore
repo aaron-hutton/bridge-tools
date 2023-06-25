@@ -37,3 +37,7 @@ yarn-error.log*
 
 dist
 .vscode
+
+
+packages/dd/wasm/compiled.js
+packages/dd/wasm/compiled.wasm
