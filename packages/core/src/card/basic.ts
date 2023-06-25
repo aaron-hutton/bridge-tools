@@ -80,7 +80,7 @@ export function compareRank(rank1: Rank, rank2: Rank): number {
 }
 
 /**
- * Return a numberical value for the card from 0-51
+ * Return a numberical value for the card from 0-51. The AS=0, the 2S=12 up to the 2C=51
  */
 export function cardToNumber(card: Card): number {
   return RANK_TO_NUMBER[card.rank] + CARDS_IN_SUIT * suitToNumber(card.suit);
@@ -103,4 +103,26 @@ export function numberToCard(cardNumber: number): Card {
  */
 export function equalCard(card1: Card, card2: Card) {
   return card1.rank === card2.rank && card1.suit === card2.suit;
+}
+
+/**
+ * Returns the card with a rank 1 above the given card. Returns null if an ace is passed
+ */
+export function cardAbove(card: Card) {
+  if (card.rank === "A") {
+    return null;
+  }
+
+  return numberToCard(cardToNumber(card) - 1);
+}
+
+/**
+ * Returns the card with a rank 1 below the given card. Returns null if a two is passed
+ */
+export function cardBelow(card: Card) {
+  if (card.rank === "2") {
+    return null;
+  }
+
+  return numberToCard(cardToNumber(card) + 1);
 }

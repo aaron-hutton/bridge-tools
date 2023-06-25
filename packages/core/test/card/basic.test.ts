@@ -124,3 +124,39 @@ describe("Testing Card.equalCard", () => {
     ).toBeFalsy();
   });
 });
+
+describe("Testing Card.cardAbove", () => {
+  it("Testing a normal card above", () => {
+    expect(Card.cardAbove({ rank: "7", suit: "D" })).toStrictEqual({
+      rank: "8",
+      suit: "D",
+    });
+
+    expect(Card.cardAbove({ rank: "2", suit: "S" })).toStrictEqual({
+      rank: "3",
+      suit: "S",
+    });
+  });
+
+  it("Testing an ace returns null", () => {
+    expect(Card.cardAbove({ rank: "A", suit: "D" })).toBeNull();
+  });
+});
+
+describe("Testing Card.cardBelow", () => {
+  it("Testing a normal card below", () => {
+    expect(Card.cardBelow({ rank: "7", suit: "D" })).toStrictEqual({
+      rank: "6",
+      suit: "D",
+    });
+
+    expect(Card.cardBelow({ rank: "A", suit: "S" })).toStrictEqual({
+      rank: "K",
+      suit: "S",
+    });
+  });
+
+  it("Testing a 2 returns null", () => {
+    expect(Card.cardBelow({ rank: "2", suit: "D" })).toBeNull();
+  });
+});
