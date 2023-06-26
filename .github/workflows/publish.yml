@@ -9,7 +9,6 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 env:
   EM_VERSION: 3.1.42
-  EM_CACHE_FOLDER: "emsdk-cache"
 
 permissions:
   contents: write
@@ -35,7 +34,6 @@ jobs:
         uses: mymindstorm/setup-emsdk@v11
         with:
           version: ${{env.EM_VERSION}}
-          actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
 
       - run: pnpm install --frozen-lockfile
       - name: Create Release Pull Request or Publish
