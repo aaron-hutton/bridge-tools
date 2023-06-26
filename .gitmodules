@@ -1,0 +1,3 @@
+[submodule "packages/dd/dds"]
+	path = packages/dd/dds
+	url = https://github.com/aaron-hutton/dds.git
