@@ -1,3 +1,0 @@
-[submodule "packages/dd/dds"]
-	path = packages/dd/dds
-	url = https://github.com/dds-bridge/dds
