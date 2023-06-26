@@ -1,5 +1,12 @@
 # @bridge-tools/core
 
+## 0.2.2
+
+### Patch Changes
+
+- 89eea67: Added bridge constant
+- a64908f: Added functions to calculate card above and below
+
 ## 0.2.1
 
 ### Patch Changes

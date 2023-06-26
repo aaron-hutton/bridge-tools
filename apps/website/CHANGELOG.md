@@ -1,5 +1,14 @@
 # @bridge-tools/website
 
+## 0.1.3
+
+### Patch Changes
+
+- Updated dependencies [89eea67]
+- Updated dependencies [a64908f]
+  - @bridge-tools/core@0.2.2
+  - @bridge-tools/generator@0.1.4
+
 ## 0.1.2
 
 ### Patch Changes
