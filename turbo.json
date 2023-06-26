@@ -4,6 +4,10 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
+      "outputs": ["dist/**", "wasm/**"]
+    },
+    "build-web": {
+      "dependsOn": ["build"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**", "wasm/**"]
     },
     "test": {
