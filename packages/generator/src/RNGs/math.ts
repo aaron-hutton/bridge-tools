@@ -1,24 +1,29 @@
-import { BIG_INTEGER_2_32, INTEGER_2_32 } from "../constants";
-import { type RandomGenerator } from "../random";
-import { multipleAttempts } from "./multiple-attempts";
+import { type RandomGenerator } from "../types";
 
 /**
  * This random generator should be used for quick dealing, such as during simulations. Most implementations
  * of Math.random are not cryptographically secure, but they are normally fast.
  *
- * This generates 3 32 bit integers, converts them to bigints, bitshifts them by 64, 32 and 0
- * respectively and sums them.
+ * This generates as many 1 or 2 48 bit integers as it needs before converting them to bigints,
+ * bitshifting them and summing them.
  */
-export const MathRandomNumberGenerator: RandomGenerator = () => {
-  return multipleAttempts(() => {
-    const rand1 = Math.floor(Math.random() * INTEGER_2_32);
-    const rand2 = Math.floor(Math.random() * INTEGER_2_32);
-    const rand3 = Math.floor(Math.random() * INTEGER_2_32);
+export const MathRandomNumberGenerator: RandomGenerator = (bits: number) => {
+  if (bits >= 96) {
+    throw new Error(
+      "This RNG was only designed to provide up to 96 bits of randomness"
+    );
+  }
 
-    const bRand1 = BigInt(rand1) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
-    const bRand2 = BigInt(rand2) * BIG_INTEGER_2_32;
-    const bRand3 = BigInt(rand3);
+  if (bits <= 48) {
+    const rand = Math.random() << bits;
+    return BigInt(Math.floor(rand));
+  } else {
+    const rand1 = Math.random() << bits;
+    const rand2 = Math.random() << 48;
 
-    return bRand1 + bRand2 + bRand3;
-  });
+    const rand1BI = BigInt(Math.floor(rand1)) << 48n;
+    const rand2BI = BigInt(Math.floor(rand2));
+
+    return rand1BI + rand2BI;
+  }
 };

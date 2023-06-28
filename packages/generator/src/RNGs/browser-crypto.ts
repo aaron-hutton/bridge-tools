@@ -1,24 +1,27 @@
-import { BIG_INTEGER_2_32 } from "../constants";
-import { type RandomGenerator } from "../random";
-import { multipleAttempts } from "./multiple-attempts";
+import { type RandomGenerator } from "../types";
 
 /**
  * This random generator should be used in browsers, it should be cryptographically secure, so can be used tournament dealing.
  * This has not been checked, however, and therefore should be used for tournaments at your own risk.
  *
- * This calls Crypto.getRandomValues to generate 3 32 bit integers, converts them to bigints, bitshifts by 64, 32 and 0
- * respectively and sums them.
  */
-export const BrowserCryptoRandomNumberGenerator: RandomGenerator = () => {
-  return multipleAttempts(() => {
-    const values = new Uint32Array(3);
+export const BrowserCryptoRandomNumberGenerator: RandomGenerator = (
+  bits: number
+) => {
+  if (bits > 128) {
+    throw new Error("This RNG was designed to go to a maximum of 128 bits");
+  }
 
+  if (bits <= 64) {
+    const values = new BigInt64Array(1);
     window.crypto.getRandomValues(values);
 
-    const rand1 = BigInt(values[0]) * BIG_INTEGER_2_32 * BIG_INTEGER_2_32;
-    const rand2 = BigInt(values[1]) * BIG_INTEGER_2_32;
-    const rand3 = BigInt(values[2]);
+    return values[0] >> BigInt(64 - bits);
+  } else {
+    const values = new BigInt64Array(2);
+    window.crypto.getRandomValues(values);
 
-    return rand1 + rand2 + rand3;
-  });
+    const v0 = values[0] >> BigInt(128 - bits);
+    return v0 << (64n + values[1]);
+  }
 };

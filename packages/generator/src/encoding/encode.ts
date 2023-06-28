@@ -1,5 +1,5 @@
 import { Card, Constants, Deal, Hand, type Types } from "@bridge-tools/core";
-import { NUMBER_OF_DEALS } from "./constants";
+import { NUMBER_OF_DEALS } from "../constants";
 
 /**
  * This takes a Deal instance and encodes it as a bigint with a value between 0 and 52!/(13!^4).
