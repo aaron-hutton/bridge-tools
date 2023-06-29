@@ -40,8 +40,6 @@ export function calculateNumDeals(fixed: Types.Deal) {
 /**
  * Calculates the log base 2 of the number of deals which are available given the fixed cards.
  * Which is then used as the range for the RNGs
- *
- * Uses the fact that log(n!) = log(1) + log(2) + ... + log(n)
  */
 export function calculateNumDealsBits(fixed: Types.Deal) {
   const numFixedCards =
@@ -49,10 +47,10 @@ export function calculateNumDealsBits(fixed: Types.Deal) {
 
   let result = logFactorial(Constants.CARDS_IN_DEAL - numFixedCards);
 
-  result -= logFactorial(Constants.CARDS_IN_DEAL - fixed.N.length);
-  result -= logFactorial(Constants.CARDS_IN_DEAL - fixed.E.length);
-  result -= logFactorial(Constants.CARDS_IN_DEAL - fixed.S.length);
-  result -= logFactorial(Constants.CARDS_IN_DEAL - fixed.W.length);
+  result -= logFactorial(Constants.CARDS_IN_HAND - fixed.N.length);
+  result -= logFactorial(Constants.CARDS_IN_HAND - fixed.E.length);
+  result -= logFactorial(Constants.CARDS_IN_HAND - fixed.S.length);
+  result -= logFactorial(Constants.CARDS_IN_HAND - fixed.W.length);
 
   return Math.ceil(result);
 }
