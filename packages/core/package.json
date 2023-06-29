@@ -6,7 +6,7 @@
     "url": "https://github.com/aaron-hutton/bridge-tools.git",
     "directory": "packages/core"
   },
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
