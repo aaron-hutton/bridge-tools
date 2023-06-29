@@ -1,5 +1,11 @@
 # @bridge-tools/generator
 
+## 0.2.0
+
+### Minor Changes
+
+- 46882b0: Added the ability to generate deals with 1 or 2 fixed hands, or any custom fixed cards
+
 ## 0.1.4
 
 ### Patch Changes
