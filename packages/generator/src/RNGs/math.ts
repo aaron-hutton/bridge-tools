@@ -1,29 +1,20 @@
 import { type RandomGenerator } from "../types";
 
+const RANDOM_SIZE = 48;
+
 /**
  * This random generator should be used for quick dealing, such as during simulations. Most implementations
  * of Math.random are not cryptographically secure, but they are normally fast.
  *
- * This generates as many 1 or 2 48 bit integers as it needs before converting them to bigints,
- * bitshifting them and summing them.
+ * This generates as many 48 bit integers which it then combines in a bigint
  */
 export const MathRandomNumberGenerator: RandomGenerator = (bits: number) => {
-  if (bits > 96) {
-    throw new Error(
-      "This RNG was only designed to provide up to 96 bits of randomness"
-    );
+  let result = 0n;
+  for (let offset = 0; offset < bits; offset += RANDOM_SIZE) {
+    const size = Math.min(bits - offset, RANDOM_SIZE);
+    const rand = Math.random() * 2 ** size;
+    result += BigInt(Math.floor(rand)) << BigInt(offset);
   }
 
-  if (bits <= 48) {
-    const rand = Math.random() * 2 ** bits;
-    return BigInt(Math.floor(rand));
-  } else {
-    const rand1 = Math.random() * 2 ** (bits - 48);
-    const rand2 = Math.random() * 2 ** 48;
-
-    const rand1BI = BigInt(Math.floor(rand1)) << 48n;
-    const rand2BI = BigInt(Math.floor(rand2));
-
-    return rand1BI + rand2BI;
-  }
+  return result;
 };

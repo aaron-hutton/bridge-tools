@@ -1,5 +1,7 @@
 import { type RandomGenerator } from "../types";
 
+const RANDOM_SIZE = 64;
+
 /**
  * This random generator should be used in browsers, it should be cryptographically secure, so can be used tournament dealing.
  * This has not been checked, however, and therefore should be used for tournaments at your own risk.
@@ -8,20 +10,20 @@ import { type RandomGenerator } from "../types";
 export const BrowserCryptoRandomNumberGenerator: RandomGenerator = (
   bits: number
 ) => {
-  if (bits > 128) {
-    throw new Error("This RNG was designed to go to a maximum of 128 bits");
+  const values = new BigInt64Array(Math.ceil(bits / RANDOM_SIZE));
+  window.crypto.getRandomValues(values);
+
+  let result = 0n;
+  for (let index = 0; index * RANDOM_SIZE < bits; index++) {
+    const offset = index * RANDOM_SIZE;
+
+    // If we're on the final iteration, drop off any unnecessary bits
+    const rand =
+      offset + RANDOM_SIZE > bits
+        ? values[index] >> BigInt(offset + RANDOM_SIZE - bits)
+        : values[index];
+    result += rand;
   }
 
-  if (bits <= 64) {
-    const values = new BigInt64Array(1);
-    window.crypto.getRandomValues(values);
-
-    return values[0] >> BigInt(64 - bits);
-  } else {
-    const values = new BigInt64Array(2);
-    window.crypto.getRandomValues(values);
-
-    const v0 = values[0] >> BigInt(128 - bits);
-    return v0 << (64n + values[1]);
-  }
+  return result;
 };
