@@ -27,8 +27,8 @@ export function generateDoubleFixed({
     );
   }
 
-  const allCards = Array(Constants.CARDS_IN_DEAL).map((_, index) =>
-    Card.numberToCard(index)
+  const allCards = Array.from({ length: Constants.CARDS_IN_DEAL }, (_, i) =>
+    Card.numberToCard(i)
   );
   const availableCards = allCards.filter(
     (card) => !Hand.containsCard(hand1, card) && !Hand.containsCard(hand2, card)

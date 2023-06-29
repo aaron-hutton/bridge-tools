@@ -1,9 +1,11 @@
-import { Constants, RNG } from "../../src";
+import { DealGeneratorConstants, MathRandomNumberGenerator } from "../../src";
 
 describe("Testing the MathRandomNumberGenerator", () => {
   it("Testing we get a valid number ", () => {
-    const id = RNG.MathRandomNumberGenerator();
+    const id = MathRandomNumberGenerator(DealGeneratorConstants.FULL_DEAL_BITS);
 
-    expect(0n <= id && id < Constants.NUMBER_OF_DEALS).toBeTruthy();
+    expect(
+      0n <= id && id < DealGeneratorConstants.NUMBER_OF_DEALS
+    ).toBeTruthy();
   });
 });

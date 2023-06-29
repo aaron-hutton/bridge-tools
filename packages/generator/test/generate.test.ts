@@ -1,22 +1,28 @@
 import { Deal, Hand, type Types } from "@bridge-tools/core";
-import { generateDeals } from "../src";
+import { generate } from "../src";
 
 describe("Testing generate", () => {
   it("Testing a random deal is valid", () => {
-    const deals = generateDeals({ num: 1 });
+    const deals = generate({ num: 1 });
 
     expect(Deal.isValid(deals[0])).toBeTruthy();
   });
 
+  it("Testing two consecutive deals aren't the same", () => {
+    const deals = generate({ num: 2 });
+
+    expect(deals[0]).not.toStrictEqual(deals[1]);
+  });
+
   it("Testing we generate the right number", () => {
-    const deals = generateDeals({ num: 5 });
+    const deals = generate({ num: 5 });
 
     expect(deals).toHaveLength(5);
   });
 
   it("Testing that filters work", () => {
     // Force N to have 6 spades
-    const deals = generateDeals({
+    const deals = generate({
       num: 1,
       filter: (deal) => Hand.exactDistribution(deal.N)[0] === 6,
     });
@@ -32,6 +38,6 @@ describe("Testing generate", () => {
       filter: (deal: Types.Deal) => Hand.exactDistribution(deal.N)[0] === 14,
     };
 
-    expect(() => generateDeals(dealOptions)).toThrowError();
+    expect(() => generate(dealOptions)).toThrowError();
   });
 });

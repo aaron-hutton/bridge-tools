@@ -21,8 +21,8 @@ export function decodeDeal(id: bigint): Types.Deal {
     W: [],
   } as Types.Deal;
 
-  const allCards = Array(Constants.CARDS_IN_DEAL).map((_, index) =>
-    Card.numberToCard(index)
+  const allCards = Array.from({ length: Constants.CARDS_IN_DEAL }, (_, i) =>
+    Card.numberToCard(i)
   );
 
   return performDeal(id, deal, NUMBER_OF_DEALS, allCards);

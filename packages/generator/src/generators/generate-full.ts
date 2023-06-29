@@ -10,8 +10,8 @@ import { doGeneration } from "./generate";
  * @returns A list of the generated deals
  */
 export function generate(options: DealGeneratorOptions) {
-  const allCards = Array(Constants.CARDS_IN_DEAL).map((_, index) =>
-    Card.numberToCard(index)
+  const allCards = Array.from({ length: Constants.CARDS_IN_DEAL }, (_, i) =>
+    Card.numberToCard(i)
   );
 
   return doGeneration(

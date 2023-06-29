@@ -22,6 +22,7 @@ export function performDeal(
   const CARDS_IN_HAND_BI = BigInt(Constants.CARDS_IN_HAND);
 
   for (const card of availableCards) {
+    // console.log("Card: ", card);
     for (const direction of Constants.ALL_COMPASS) {
       const spaceInHand = CARDS_IN_HAND_BI - BigInt(deal[direction].length);
       const threshold = (remainingDeals * spaceInHand) / remainingCards;
