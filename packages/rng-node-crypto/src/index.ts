@@ -15,8 +15,9 @@ export const NodeCryptoRandomNumberGenerator: RandomGenerator = (
   let result = 0n;
   for (let offset = 0; offset < bits; offset += RANDOM_SIZE) {
     const size = Math.min(bits - offset, RANDOM_SIZE);
+
     const rand = randomInt(2 ** size);
-    result += BigInt(Math.floor(rand)) << BigInt(offset);
+    result += BigInt(rand) << BigInt(offset);
   }
 
   return result;

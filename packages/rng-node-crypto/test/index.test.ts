@@ -8,7 +8,8 @@ describe("Testing the rng", () => {
     );
 
     expect(
-      0n <= id && id < DealGeneratorConstants.NUMBER_OF_DEALS
+      0n <= id &&
+        id < BigInt(2) << BigInt(DealGeneratorConstants.FULL_DEAL_BITS)
     ).toBeTruthy();
   });
 

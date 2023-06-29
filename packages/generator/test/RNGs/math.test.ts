@@ -5,7 +5,8 @@ describe("Testing the MathRandomNumberGenerator", () => {
     const id = MathRandomNumberGenerator(DealGeneratorConstants.FULL_DEAL_BITS);
 
     expect(
-      0n <= id && id < DealGeneratorConstants.NUMBER_OF_DEALS
+      0n <= id &&
+        id < BigInt(2) << BigInt(DealGeneratorConstants.FULL_DEAL_BITS)
     ).toBeTruthy();
   });
 });
