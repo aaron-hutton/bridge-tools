@@ -26,9 +26,9 @@ $ npm i @bridge-tools/generator
 To start generating deals it is as simple as:
 
 ```typescript
-const { generateDeals } = require("@bridge-tools/generator");
+const { generate } = require("@bridge-tools/generator");
 
-const deal = generateDeals({
+const deal = generate({
   num: 5,
 });
 ```

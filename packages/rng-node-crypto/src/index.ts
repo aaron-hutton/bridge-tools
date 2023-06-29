@@ -1,4 +1,4 @@
-import { Constants, RandomGenerator, RNG } from "@bridge-tools/generator";
+import { type RandomGenerator } from "@bridge-tools/generator";
 import { randomInt } from "crypto";
 
 /**
@@ -8,17 +8,25 @@ import { randomInt } from "crypto";
  * This calls Crypto.getRandomValues to generate 3 32 bit integers, converts them to bigints, bitshifts by 64, 32 and 0
  * respectively and sums them.
  */
-export const NodeCryptoRandomNumberGenerator: RandomGenerator = () => {
-  return RNG.multipleAttempts(() => {
-    const rand1 = randomInt(Constants.INTEGER_2_32);
-    const rand2 = randomInt(Constants.INTEGER_2_32);
-    const rand3 = randomInt(Constants.INTEGER_2_32);
+export const NodeCryptoRandomNumberGenerator: RandomGenerator = (
+  bits: number
+) => {
+  if (bits > 96) {
+    throw new Error(
+      "This RNG was only designed to provide up to 96 bits of randomness"
+    );
+  }
 
-    const bRand1 =
-      BigInt(rand1) * Constants.BIG_INTEGER_2_32 * Constants.BIG_INTEGER_2_32;
-    const bRand2 = BigInt(rand2) * Constants.BIG_INTEGER_2_32;
-    const bRand3 = BigInt(rand3);
+  if (bits <= 48) {
+    const rand = randomInt(2 ** 48);
+    return BigInt(Math.floor(rand));
+  } else {
+    const rand1 = randomInt(2 ** (bits - 48));
+    const rand2 = randomInt(2 ** 48);
 
-    return bRand1 + bRand2 + bRand3;
-  });
+    const rand1BI = BigInt(Math.floor(rand1)) << 48n;
+    const rand2BI = BigInt(Math.floor(rand2));
+
+    return rand1BI + rand2BI;
+  }
 };
