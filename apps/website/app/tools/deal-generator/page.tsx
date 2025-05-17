@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DealGenerator() {
   return (
-    <main className="mx-auto max-w-3xl px-8 py-16 2xl:px-0">
+    <main className="mx-auto max-w-5xl px-8 py-16 2xl:px-0">
       <Heading>Deal Generator</Heading>
       <Generator />
     </main>

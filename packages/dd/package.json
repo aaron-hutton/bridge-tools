@@ -1,7 +1,7 @@
 {
   "name": "@bridge-tools/dd",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/aaron-hutton/bridge-tools.git",
@@ -34,5 +34,8 @@
     "dist",
     "wasm",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

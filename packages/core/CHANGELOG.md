@@ -1,5 +1,17 @@
 # @bridge-tools/core
 
+## 0.3.1
+
+### Patch Changes
+
+- Make the constant lists use 'as const'
+
+## 0.3.0
+
+### Minor Changes
+
+- Actually adding files
+
 ## 0.2.2
 
 ### Patch Changes

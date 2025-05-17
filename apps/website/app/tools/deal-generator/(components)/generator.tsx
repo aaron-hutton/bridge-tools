@@ -7,6 +7,11 @@ import { Types } from "@bridge-tools/core";
 import { generate } from "@bridge-tools/generator";
 import { useEffect, useState } from "react";
 
+// type GeneratorState {
+//   deal: Types.Deal;
+//   constraints:
+// }
+
 export function Generator() {
   const [deal, setDeal] = useState<Types.Deal>(EMPTY_DEAL);
 

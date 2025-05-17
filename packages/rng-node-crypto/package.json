@@ -1,7 +1,7 @@
 {
   "name": "@bridge-tools/rng-node-crypto",
   "license": "MIT",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "repository": {
     "type": "git",
     "url": "https://github.com/aaron-hutton/bridge-tools.git",
@@ -31,5 +31,8 @@
   "files": [
     "dist",
     "README.md"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }

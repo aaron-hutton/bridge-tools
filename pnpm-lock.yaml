@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -175,37 +175,6 @@ importers:
       '@types/emscripten':
         specifier: ^1.39.6
         version: 1.39.6
-      '@types/jest':
-        specifier: ^29.5.2
-        version: 29.5.2
-      '@types/node':
-        specifier: ^20.3.1
-        version: 20.3.1
-      eslint-config-bridge-tools:
-        specifier: workspace:*
-        version: link:../../tools/eslint-config-bridge-tools
-      jest:
-        specifier: ^29.5.0
-        version: 29.5.0(@types/node@20.3.1)
-      tsup:
-        specifier: ^6.7.0
-        version: 6.7.0(typescript@5.1.3)
-      typescript:
-        specifier: ^5.1.3
-        version: 5.1.3
-
-  packages/dd-native:
-    dependencies:
-      '@bridge-tools/core':
-        specifier: workspace:*
-        version: link:../core
-    devDependencies:
-      '@bridge-tools/babel':
-        specifier: workspace:*
-        version: link:../../tools/babel
-      '@bridge-tools/tsconfig':
-        specifier: workspace:*
-        version: link:../../tools/tsconfig
       '@types/jest':
         specifier: ^29.5.2
         version: 29.5.2
